@@ -39,29 +39,27 @@ const socialLinks = [{
   href: "mailto:connect@arifhussain.in",
   icon: Mail
 }];
-const variantBg = {
-  gold: "var(--gradient-gold)",
-  sunset: "var(--gradient-sunset)",
-  ocean: "var(--gradient-ocean)",
-  emerald: "var(--gradient-emerald)",
-  rose: "var(--gradient-rose)"
+const hoverStyles = {
+  gold: "hover:shadow-[0_0_25px_rgba(245,158,11,0.15)] hover:border-amber-500/40",
+  sunset: "hover:shadow-[0_0_25px_rgba(249,115,22,0.15)] hover:border-orange-500/40",
+  ocean: "hover:shadow-[0_0_25px_rgba(59,130,246,0.15)] hover:border-blue-500/40",
+  emerald: "hover:shadow-[0_0_25px_rgba(16,185,129,0.15)] hover:border-emerald-500/40",
+  rose: "hover:shadow-[0_0_25px_rgba(236,72,153,0.15)] hover:border-fuchsia-500/40"
 };
 function LinkCard({
   link,
   index
 }) {
-  const isGold = link.variant === "gold";
   return /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: link.href, target: "_blank", rel: "noopener noreferrer", style: {
-    backgroundImage: variantBg[link.variant],
     animationDelay: `${0.15 + index * 0.08}s`
-  }, className: `animate-fade-up animate-gradient group relative flex items-center gap-4 overflow-hidden rounded-2xl px-5 py-4 shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[var(--shadow-glow)] active:scale-[0.98] ${isGold ? "text-[oklch(0.15_0.04_280)]" : "text-white"}`, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-full" }),
+  }, className: `animate-fade-up group relative flex items-center gap-4 overflow-hidden rounded-2xl px-5 py-4 bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-[0_4px_30px_rgba(0,0,0,0.4)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-white/[0.07] active:scale-[0.98] text-white ${hoverStyles[link.variant]}`, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/10 to-transparent transition-transform duration-1000 group-hover:translate-x-full" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white shadow-md p-1.5 border border-white/10 overflow-hidden transition-transform duration-300 group-hover:scale-105", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: link.logo, alt: link.label, className: "h-full w-full object-contain rounded-lg" }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0 flex-1", children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-semibold tracking-tight", children: link.label }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `text-xs ${isGold ? "opacity-75" : "opacity-90"}`, children: link.sub })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-semibold tracking-tight text-white group-hover:text-white transition-colors duration-300", children: link.label }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-white/60 group-hover:text-white/80 transition-colors duration-300", children: link.sub })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpRight, { className: "h-4 w-4 opacity-70 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpRight, { className: "h-4 w-4 text-white/50 transition-all duration-300 group-hover:text-white group-hover:-translate-y-0.5 group-hover:translate-x-0.5" })
   ] });
 }
 function Index() {
