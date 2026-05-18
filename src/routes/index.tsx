@@ -129,7 +129,7 @@ function Index() {
           >
             {/* Identity */}
             <h1
-              className="signature-text shimmer-text animate-fade-up text-6xl sm:text-7xl md:text-8xl tracking-normal pt-12 pb-3 leading-normal font-normal inline-block -rotate-12 transform"
+              className="signature-text shimmer-text animate-fade-up text-6xl sm:text-7xl md:text-8xl tracking-normal pt-12 pb-3 px-8 leading-normal font-normal inline-block -rotate-12 transform"
               style={{ animationDelay: "0.05s" }}
             >
               Arif Hussain
