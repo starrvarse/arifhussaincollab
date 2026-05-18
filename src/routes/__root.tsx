@@ -72,21 +72,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
+      { title: "Arif Hussain" },
+      { name: "description", content: "Entrepreneur, Founder, and Leader" },
+      { name: "author", content: "Arif Hussain" },
       { name: "theme-color", content: "#0a0a0a" },
       { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { property: "og:title", content: "Arif Hussain" },
+      { property: "og:description", content: "Entrepreneur, Founder, and Leader" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.cdnfonts.com/css/brittany-signature",
       },
       {
         rel: "icon",

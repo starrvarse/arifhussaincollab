@@ -28,7 +28,7 @@ const businessLinks: Link[] = [
   { label: "BigSur Corp", sub: "Digital platforms & ERP", href: "https://bigsur.in", logo: "/BigSur-Corp-square.png", variant: "gold" },
   { label: "Arif Plastic Agency", sub: "Distribution · family business", href: "https://www.arifplasticagency.in", logo: "/arifplasticlogo.png", variant: "ocean" },
   { label: "BlueCrest Royal Academy", sub: "Education initiative", href: "https://www.bluecrestroyalacademy.com", logo: "/bluecrestlogo.png", variant: "emerald" },
-  { label: "Abul Foundation", sub: "Social impact", href: "https://www.abulfoundation.org", logo: "/abulfoundlogo.png", variant: "rose" },
+  { label: "Abul Foundation", sub: "Family Trust · Social impact", href: "https://www.abulfoundation.org", logo: "/abulfoundlogo.png", variant: "rose" },
 ];
 
 const socialLinks = [
@@ -129,13 +129,13 @@ function Index() {
           >
             {/* Identity */}
             <h1
-              className="shimmer-text animate-fade-up text-3xl font-bold tracking-tight"
+              className="signature-text shimmer-text animate-fade-up text-6xl sm:text-7xl md:text-8xl tracking-normal pt-12 pb-3 leading-normal font-normal inline-block -rotate-12 transform"
               style={{ animationDelay: "0.05s" }}
             >
               Arif Hussain
             </h1>
             <div
-              className="animate-fade-up mt-2 flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[var(--gold)] backdrop-blur-sm"
+              className="animate-fade-up mt-6 flex items-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-[var(--gold)] backdrop-blur-sm"
               style={{ animationDelay: "0.1s" }}
             >
               <Sparkles className="h-3.5 w-3.5" />

@@ -195,4 +195,7 @@
     color: transparent;
     animation: shimmer 3.5s linear infinite;
   }
+  .signature-text {
+    font-family: 'Brittany Signature', cursive;
+  }
 }
