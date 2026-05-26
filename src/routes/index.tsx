@@ -34,7 +34,7 @@ const businessLinks: Link[] = [
 const socialLinks = [
   { label: "Instagram", href: "https://www.instagram.com/____.kyrios.____/", icon: Instagram },
   { label: "Facebook", href: "https://www.facebook.com/hussainarif1994", icon: Facebook },
-  { label: "Email", href: "mailto:connect@arifhussain.in", icon: Mail },
+  { label: "Email", href: "mailto:collabwitharif@proton.me", icon: Mail },
 ];
 
 const hoverStyles: Record<Variant, string> = {
