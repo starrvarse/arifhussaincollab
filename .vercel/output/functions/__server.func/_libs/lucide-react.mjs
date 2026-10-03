@@ -83,24 +83,30 @@ const ArrowRight = createLucideIcon("arrow-right", __iconNode$f);
 const __iconNode$e = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
 const Check = createLucideIcon("check", __iconNode$e);
 const __iconNode$d = [
+  ["path", { d: "m18 16 4-4-4-4", key: "1inbqp" }],
+  ["path", { d: "m6 8-4 4 4 4", key: "15zrgr" }],
+  ["path", { d: "m14.5 4-5 16", key: "e7oirm" }]
+];
+const CodeXml = createLucideIcon("code-xml", __iconNode$d);
+const __iconNode$c = [
   ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
   ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
 ];
-const Copy = createLucideIcon("copy", __iconNode$d);
-const __iconNode$c = [
+const Copy = createLucideIcon("copy", __iconNode$c);
+const __iconNode$b = [
   ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
   ["path", { d: "M10 14 21 3", key: "gplh6r" }],
   ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$c);
-const __iconNode$b = [
+const ExternalLink = createLucideIcon("external-link", __iconNode$b);
+const __iconNode$a = [
   [
     "path",
     { d: "M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z", key: "1jg4f8" }
   ]
 ];
-const Facebook = createLucideIcon("facebook", __iconNode$b);
-const __iconNode$a = [
+const Facebook = createLucideIcon("facebook", __iconNode$a);
+const __iconNode$9 = [
   [
     "path",
     {
@@ -111,8 +117,8 @@ const __iconNode$a = [
   ["path", { d: "M22 10v6", key: "1lu8f3" }],
   ["path", { d: "M6 12.5V16a6 3 0 0 0 12 0v-3.5", key: "1r8lef" }]
 ];
-const GraduationCap = createLucideIcon("graduation-cap", __iconNode$a);
-const __iconNode$9 = [
+const GraduationCap = createLucideIcon("graduation-cap", __iconNode$9);
+const __iconNode$8 = [
   [
     "path",
     {
@@ -121,37 +127,13 @@ const __iconNode$9 = [
     }
   ]
 ];
-const HeartHandshake = createLucideIcon("heart-handshake", __iconNode$9);
-const __iconNode$8 = [
+const HeartHandshake = createLucideIcon("heart-handshake", __iconNode$8);
+const __iconNode$7 = [
   ["rect", { width: "20", height: "20", x: "2", y: "2", rx: "5", ry: "5", key: "2e1cvw" }],
   ["path", { d: "M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z", key: "9exkf1" }],
   ["line", { x1: "17.5", x2: "17.51", y1: "6.5", y2: "6.5", key: "r4j83e" }]
 ];
-const Instagram = createLucideIcon("instagram", __iconNode$8);
-const __iconNode$7 = [
-  [
-    "path",
-    {
-      d: "M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z",
-      key: "zw3jo"
-    }
-  ],
-  [
-    "path",
-    {
-      d: "M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12",
-      key: "1wduqc"
-    }
-  ],
-  [
-    "path",
-    {
-      d: "M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17",
-      key: "kqbvx6"
-    }
-  ]
-];
-const Layers = createLucideIcon("layers", __iconNode$7);
+const Instagram = createLucideIcon("instagram", __iconNode$7);
 const __iconNode$6 = [
   [
     "path",
@@ -181,6 +163,12 @@ const __iconNode$4 = [
 ];
 const MapPin = createLucideIcon("map-pin", __iconNode$4);
 const __iconNode$3 = [
+  ["path", { d: "M4 5h16", key: "1tepv9" }],
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 19h16", key: "1djgab" }]
+];
+const Menu = createLucideIcon("menu", __iconNode$3);
+const __iconNode$2 = [
   [
     "path",
     {
@@ -189,17 +177,7 @@ const __iconNode$3 = [
     }
   ]
 ];
-const Phone = createLucideIcon("phone", __iconNode$3);
-const __iconNode$2 = [
-  [
-    "path",
-    {
-      d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
-      key: "r04s7s"
-    }
-  ]
-];
-const Star = createLucideIcon("star", __iconNode$2);
+const Phone = createLucideIcon("phone", __iconNode$2);
 const __iconNode$1 = [
   ["path", { d: "M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2", key: "wrbu53" }],
   ["path", { d: "M15 18H9", key: "1lyqi6" }],
@@ -227,13 +205,13 @@ export {
   GraduationCap as G,
   HeartHandshake as H,
   Instagram as I,
-  Layers as L,
+  Linkedin as L,
   Mail as M,
   Phone as P,
-  Star as S,
   Truck as T,
   X,
-  Copy as a,
-  Linkedin as b,
-  MapPin as c
+  CodeXml as a,
+  Copy as b,
+  MapPin as c,
+  Menu as d
 };
