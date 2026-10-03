@@ -75,17 +75,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Arif Hussain" },
       { name: "description", content: "Entrepreneur, Founder, and Leader" },
       { name: "author", content: "Arif Hussain" },
-      { name: "theme-color", content: "#0a0a0a" },
-      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { property: "og:title", content: "Arif Hussain" },
-      { property: "og:description", content: "Entrepreneur, Founder, and Leader" },
+      { name: "theme-color", content: "#f8f6f0" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+      { property: "og:title", content: "Arif Hussain — Creative Entrepreneur" },
+      { property: "og:description", content: "I design beautifully simple things, and I love what I do." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com",
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -94,7 +107,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "icon",
         type: "image/png",
-        href: "/BigSur-Corp-square.png",
+        href: "/favicon.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png",
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicon-16x16.png",
+      },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png",
       },
     ],
   }),

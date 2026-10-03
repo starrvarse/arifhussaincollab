@@ -15,7 +15,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-const appCss = "/assets/styles-CEpfV9c0.css";
+const appCss = "/assets/styles-B5HCr34C.css";
 function NotFoundComponent() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center bg-background px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-md text-center", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-7xl font-bold text-foreground", children: "404" }),
@@ -68,17 +68,30 @@ const Route$1 = createRootRouteWithContext()({
       { title: "Arif Hussain" },
       { name: "description", content: "Entrepreneur, Founder, and Leader" },
       { name: "author", content: "Arif Hussain" },
-      { name: "theme-color", content: "#0a0a0a" },
-      { name: "apple-mobile-web-app-status-bar-style", content: "black-translucent" },
-      { property: "og:title", content: "Arif Hussain" },
-      { property: "og:description", content: "Entrepreneur, Founder, and Leader" },
+      { name: "theme-color", content: "#f8f6f0" },
+      { name: "apple-mobile-web-app-status-bar-style", content: "default" },
+      { property: "og:title", content: "Arif Hussain — Creative Entrepreneur" },
+      { property: "og:description", content: "I design beautifully simple things, and I love what I do." },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" }
+      { name: "twitter:card", content: "summary_large_image" }
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.googleapis.com"
+      },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous"
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap"
       },
       {
         rel: "stylesheet",
@@ -87,7 +100,24 @@ const Route$1 = createRootRouteWithContext()({
       {
         rel: "icon",
         type: "image/png",
-        href: "/BigSur-Corp-square.png"
+        href: "/favicon.png"
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "32x32",
+        href: "/favicon-32x32.png"
+      },
+      {
+        rel: "icon",
+        type: "image/png",
+        sizes: "16x16",
+        href: "/favicon-16x16.png"
+      },
+      {
+        rel: "apple-touch-icon",
+        sizes: "180x180",
+        href: "/apple-touch-icon.png"
       }
     ]
   }),
@@ -109,20 +139,23 @@ function RootComponent() {
   const { queryClient } = Route$1.useRouteContext();
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
-const $$splitComponentImporter = () => import("./index-Cbk9avc1.mjs");
+const $$splitComponentImporter = () => import("./index-X-N16lhL.mjs");
 const Route = createFileRoute("/")({
   head: () => ({
     meta: [{
-      title: "Arif Hussain — Entrepreneur & Founder"
+      title: "Arif Hussain — Founder, Tech Entrepreneur & Leader"
     }, {
       name: "description",
-      content: "Founder & CEO of BigSur Corp. Sales Director at Arif Plastic Agency. Founder of BlueCrest Royal Academy."
+      content: "Founder & CEO of BigSur Corp. Sales Director at Arif Plastic Agency. Founder & Trustee of BlueCrest Royal Academy. Trustee at Abul Foundation."
     }, {
       property: "og:title",
-      content: "Arif Hussain — Entrepreneur & Founder"
+      content: "Arif Hussain — Founder, Tech Entrepreneur & Leader"
     }, {
       property: "og:description",
-      content: "Digital platforms, ERP systems, education, and family business — all in one place."
+      content: "Building enterprise software solutions, distribution networks, and educational institutions in Assam, India."
+    }, {
+      property: "og:image",
+      content: "/Intense Side-Gaze Portrait Cutout.png"
     }]
   }),
   component: lazyRouteComponent($$splitComponentImporter, "component")
