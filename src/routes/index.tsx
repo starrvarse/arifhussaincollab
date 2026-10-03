@@ -18,6 +18,7 @@ import {
   HeartHandshake,
   ArrowRight,
   X,
+  Menu,
   Building2,
   ShieldCheck,
   Cpu,
@@ -98,6 +99,7 @@ const familyVentures: Venture[] = [
 
 function IndexPage() {
   const [activeNav, setActiveNav] = useState<"home" | "products" | "family-business" | "contact">("home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -110,11 +112,15 @@ function IndexPage() {
   return (
     <div className="min-h-screen bg-[#f8f6f0] text-[#1c2522] selection:bg-[#e5a93b]/30 selection:text-[#1f4b44] flex flex-col justify-between overflow-x-hidden font-sans">
       {/* Top Header Navigation */}
-      <header className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-8 pb-4 flex items-center justify-between">
+      <header className="relative w-full max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 pt-6 sm:pt-8 pb-4 flex items-center justify-between">
         {/* Brand Logo */}
         <div className="flex items-center gap-1">
           <a
             href="/"
+            onClick={() => {
+              setActiveNav("home");
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1f4b44] transition-transform hover:scale-105"
           >
             <span className="text-[#1f4b44]">A</span>rif
@@ -122,7 +128,7 @@ function IndexPage() {
           </a>
         </div>
 
-        {/* Center Navigation Links */}
+        {/* Center Navigation Links (Desktop) */}
         <nav className="hidden md:flex items-center gap-6 sm:gap-8 text-sm font-medium text-[#4a5551]">
           <button
             onClick={() => {
@@ -171,16 +177,86 @@ function IndexPage() {
           </button>
         </nav>
 
-        {/* Right CTA Button */}
-        <div>
+        {/* Right CTA Button & Mobile Hamburger Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3">
           <button
             onClick={() => setIsContactOpen(true)}
-            className="group relative inline-flex items-center gap-2 bg-[#1f4b44] hover:bg-[#183d36] text-white px-5 sm:px-6 py-2.5 rounded-lg text-xs sm:text-sm font-semibold tracking-wide shadow-md shadow-[#1f4b44]/15 hover:shadow-lg hover:shadow-[#1f4b44]/25 transition-all duration-200 active:scale-95"
+            className="group relative inline-flex items-center gap-1.5 sm:gap-2 bg-[#1f4b44] hover:bg-[#183d36] text-white px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold tracking-wide shadow-md shadow-[#1f4b44]/15 hover:shadow-lg hover:shadow-[#1f4b44]/25 transition-all duration-200 active:scale-95"
           >
             <Mail className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
             <span>Get in Touch</span>
           </button>
+
+          {/* Mobile Hamburger Toggle */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-[#1f4b44] hover:bg-[#ede8dc]/80 transition-colors"
+            aria-label="Toggle Navigation Menu"
+          >
+            {isMobileMenuOpen ? (
+              <X className="w-5 h-5" />
+            ) : (
+              <Menu className="w-5 h-5" />
+            )}
+          </button>
         </div>
+
+        {/* Mobile Navigation Dropdown Menu */}
+        {isMobileMenuOpen && (
+          <div className="md:hidden absolute top-full left-5 right-5 z-40 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-[#ede7d8] flex flex-col gap-2 animate-fade-in mt-1">
+            <button
+              onClick={() => {
+                setActiveNav("home");
+                setIsMobileMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className={`text-left py-2 px-3 rounded-xl text-sm font-medium transition-colors ${
+                activeNav === "home"
+                  ? "bg-[#edf2f0] text-[#1f4b44] font-bold"
+                  : "text-[#4a5551] hover:bg-gray-50"
+              }`}
+            >
+              Home
+            </button>
+            <a
+              href="#products"
+              onClick={() => {
+                setActiveNav("products");
+                setIsMobileMenuOpen(false);
+              }}
+              className={`py-2 px-3 rounded-xl text-sm font-medium transition-colors ${
+                activeNav === "products"
+                  ? "bg-[#edf2f0] text-[#1f4b44] font-bold"
+                  : "text-[#4a5551] hover:bg-gray-50"
+              }`}
+            >
+              Products &amp; Software
+            </a>
+            <a
+              href="#family-business"
+              onClick={() => {
+                setActiveNav("family-business");
+                setIsMobileMenuOpen(false);
+              }}
+              className={`py-2 px-3 rounded-xl text-sm font-medium transition-colors ${
+                activeNav === "family-business"
+                  ? "bg-[#edf2f0] text-[#1f4b44] font-bold"
+                  : "text-[#4a5551] hover:bg-gray-50"
+              }`}
+            >
+              Family Business
+            </a>
+            <button
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                setIsContactOpen(true);
+              }}
+              className="text-left py-2 px-3 rounded-xl text-sm font-semibold text-[#1f4b44] hover:bg-[#edf2f0] transition-colors"
+            >
+              Contact Information
+            </button>
+          </div>
+        )}
       </header>
 
       {/* Main Hero Section */}
@@ -294,10 +370,10 @@ function IndexPage() {
               <div className="absolute inset-0 rounded-full bg-[#e5a93b]/20 blur-3xl transform scale-110 pointer-events-none" />
 
               {/* 3D Pop-Out Frame Container with Ample Headroom to Prevent Clipping */}
-              <div className="relative mx-auto w-[270px] h-[330px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] flex items-end justify-center">
+              <div className="relative mx-auto w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] flex items-end justify-center">
                 {/* Yellow Ring Circle Background with Studio Lighting Gradient */}
                 <div
-                  className="absolute bottom-0 w-[270px] h-[270px] sm:w-[330px] sm:h-[330px] lg:w-[380px] lg:h-[380px] rounded-full border-[5px] sm:border-[6px] border-[#e5a93b]"
+                  className="absolute bottom-0 w-[250px] h-[250px] sm:w-[330px] sm:h-[330px] lg:w-[380px] lg:h-[380px] rounded-full border-[5px] sm:border-[6px] border-[#e5a93b]"
                   style={{
                     background: "radial-gradient(circle at 50% 36%, #ffffff 0%, #faf6ef 52%, #ede3cf 100%)",
                     boxShadow: "inset 0 0 35px rgba(229,169,59,0.14), inset 0 -25px 45px rgba(31,75,68,0.06), 0 20px 50px rgba(229,169,59,0.22)",
@@ -305,7 +381,7 @@ function IndexPage() {
                 />
 
                 {/* Real Cutout Image Container: rounded-b-full clips only the bottom curve to the yellow ring, top has generous headroom */}
-                <div className="relative z-10 w-[270px] h-[330px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full flex items-end justify-center pointer-events-none">
+                <div className="relative z-10 w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full flex items-end justify-center pointer-events-none">
                   <img
                     src="/Intense Side-Gaze Portrait Cutout.png"
                     alt="Arif Hussain"
@@ -467,7 +543,7 @@ function IndexPage() {
               </div>
 
               {/* Right side: Suite Modules summary & Visit zilomail.in button */}
-              <div className="lg:w-80 flex flex-col justify-between space-y-4 pt-2 lg:pt-0 lg:border-l lg:border-[#f0ece1] lg:pl-6">
+              <div className="lg:w-80 flex flex-col justify-between space-y-4 pt-4 lg:pt-0 border-t border-[#ede7d8] lg:border-t-0 lg:border-l lg:border-[#f0ece1] lg:pl-6">
                 <div>
                   <div className="text-[10px] font-bold uppercase tracking-wider text-[#8a948f] mb-2.5">
                     Integrated Applications
@@ -660,9 +736,9 @@ function IndexPage() {
       </section>
 
       {/* Footer */}
-      <footer className="w-full bg-[#1f4b44] text-[#f8f6f0] py-10 px-6 sm:px-10 lg:px-16 border-t border-[#183c36]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div className="flex items-center gap-2">
+      <footer className="w-full bg-[#1f4b44] text-[#f8f6f0] py-8 sm:py-10 px-5 sm:px-10 lg:px-16 border-t border-[#183c36]">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-center sm:text-left">
+          <div className="flex flex-col sm:flex-row items-center gap-2">
             <span className="text-2xl font-black tracking-tight text-white">
               Arif.
             </span>
@@ -671,15 +747,15 @@ function IndexPage() {
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-xs text-white/70">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-6 text-xs text-white/70">
             <a href="mailto:collabwitharif@proton.me" className="hover:text-[#e5a93b] transition-colors">
               collabwitharif@proton.me
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <a href="tel:+917002414638" className="hover:text-[#e5a93b] transition-colors">
               +91 70024 14638
             </a>
-            <span>•</span>
+            <span className="hidden sm:inline">•</span>
             <span>© 2026 Arif Hussain</span>
           </div>
         </div>
@@ -687,8 +763,8 @@ function IndexPage() {
 
       {/* CONTACT MODAL */}
       {isContactOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in">
-          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-[#ded7c6] relative">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in overflow-y-auto">
+          <div className="bg-white rounded-3xl p-5 sm:p-8 max-w-md w-full shadow-2xl border border-[#ded7c6] relative my-auto max-h-[92vh] overflow-y-auto">
             <button
               onClick={() => setIsContactOpen(false)}
               className="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors"
