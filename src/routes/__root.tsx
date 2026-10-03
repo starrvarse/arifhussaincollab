@@ -127,6 +127,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "/apple-touch-icon.png",
       },
     ],
+    scripts: [
+      {
+        src: "https://p.zilomail.in/z.js",
+        async: true,
+        "data-site": "ws_9e33nkbk25bdhtnq9exi",
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,

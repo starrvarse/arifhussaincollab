@@ -119,6 +119,13 @@ const Route$1 = createRootRouteWithContext()({
         sizes: "180x180",
         href: "/apple-touch-icon.png"
       }
+    ],
+    scripts: [
+      {
+        src: "https://p.zilomail.in/z.js",
+        async: true,
+        "data-site": "ws_9e33nkbk25bdhtnq9exi"
+      }
     ]
   }),
   shellComponent: RootShell,
