@@ -380,12 +380,23 @@ function IndexPage() {
                   }}
                 />
 
-                {/* Real Cutout Image Container: rounded-b-full clips only the bottom curve to the yellow ring, top has generous headroom */}
-                <div className="relative z-10 w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full flex items-end justify-center pointer-events-none">
+                {/* Real Cutout Image Container: rounded-b-full with Safari WebKit mask & clip-path fixes */}
+                <div
+                  className="relative z-10 w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full pointer-events-none"
+                  style={{
+                    WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+                    maskImage: "radial-gradient(white, black)",
+                    WebkitClipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)",
+                    clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)",
+                    transform: "translateZ(0)",
+                    WebkitTransform: "translateZ(0)",
+                    isolation: "isolate",
+                  }}
+                >
                   <img
                     src="/Intense Side-Gaze Portrait Cutout.png"
                     alt="Arif Hussain"
-                    className="w-auto h-[90%] sm:h-[92%] lg:h-[92%] max-w-none object-contain object-bottom pointer-events-auto transition-transform duration-500 hover:scale-[1.03] select-none"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-auto h-[290px] sm:h-[385px] lg:h-[450px] max-w-none object-contain object-bottom pointer-events-auto transition-transform duration-500 hover:scale-[1.03] select-none"
                     style={{
                       filter: "drop-shadow(0 14px 28px rgba(31, 75, 68, 0.16))",
                     }}

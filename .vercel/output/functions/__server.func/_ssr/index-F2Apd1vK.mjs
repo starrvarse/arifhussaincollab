@@ -128,8 +128,16 @@ function IndexPage() {
             background: "radial-gradient(circle at 50% 36%, #ffffff 0%, #faf6ef 52%, #ede3cf 100%)",
             boxShadow: "inset 0 0 35px rgba(229,169,59,0.14), inset 0 -25px 45px rgba(31,75,68,0.06), 0 20px 50px rgba(229,169,59,0.22)"
           } }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full flex items-end justify-center pointer-events-none", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/Intense Side-Gaze Portrait Cutout.png", alt: "Arif Hussain", className: "w-auto h-[90%] sm:h-[92%] lg:h-[92%] max-w-none object-contain object-bottom pointer-events-auto transition-transform duration-500 hover:scale-[1.03] select-none", style: {
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative z-10 w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full pointer-events-none", style: {
+            WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+            maskImage: "radial-gradient(white, black)",
+            WebkitClipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)",
+            clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)",
+            transform: "translateZ(0)",
+            WebkitTransform: "translateZ(0)",
+            isolation: "isolate"
+          }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/Intense Side-Gaze Portrait Cutout.png", alt: "Arif Hussain", className: "absolute bottom-0 left-1/2 -translate-x-1/2 w-auto h-[290px] sm:h-[385px] lg:h-[450px] max-w-none object-contain object-bottom pointer-events-auto transition-transform duration-500 hover:scale-[1.03] select-none", style: {
               filter: "drop-shadow(0 14px 28px rgba(31, 75, 68, 0.16))"
             } }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#1f4b44]/10 to-transparent pointer-events-none rounded-b-full" })
