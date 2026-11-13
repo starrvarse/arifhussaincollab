@@ -15,7 +15,7 @@ import "crypto";
 import "async_hooks";
 import "stream";
 import "../_libs/isbot.mjs";
-const appCss = "/assets/styles-DE5qau32.css";
+const appCss = "/assets/styles-C8qMutEn.css";
 function NotFoundComponent() {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex min-h-screen items-center justify-center bg-background px-4", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-md text-center", children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-7xl font-bold text-foreground", children: "404" }),
@@ -94,10 +94,6 @@ const Route$1 = createRootRouteWithContext()({
         href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap"
       },
       {
-        rel: "stylesheet",
-        href: "https://fonts.cdnfonts.com/css/brittany-signature"
-      },
-      {
         rel: "icon",
         type: "image/png",
         href: "/favicon.png"
@@ -146,7 +142,7 @@ function RootComponent() {
   const { queryClient } = Route$1.useRouteContext();
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
-const $$splitComponentImporter = () => import("./index-F2Apd1vK.mjs");
+const $$splitComponentImporter = () => import("./index-D31tydes.mjs");
 const Route = createFileRoute("/")({
   head: () => ({
     meta: [{

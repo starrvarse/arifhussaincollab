@@ -1,29 +1,23 @@
-import { useState } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type ReactNode } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   Instagram,
   Facebook,
-  Twitter,
   Linkedin,
   Mail,
-  Phone,
   MapPin,
-  Code2,
-  ExternalLink,
+  Phone,
   Check,
   Copy,
-  Briefcase,
-  Layers,
+  ArrowRight,
+  ArrowUpRight,
+  ArrowDown,
+  Code2,
+  Truck,
   GraduationCap,
   HeartHandshake,
-  ArrowRight,
-  X,
-  Menu,
-  Building2,
-  ShieldCheck,
-  Cpu,
-  Truck,
-  BookOpen,
+  Hand,
+  type LucideIcon,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -53,832 +47,726 @@ export const Route = createFileRoute("/")({
   component: IndexPage,
 });
 
-type Venture = {
-  name: string;
-  role: string;
-  category: string;
+/* -------------------------------------------------------------------------- */
+/*                                    Data                                    */
+/* -------------------------------------------------------------------------- */
+
+const EMAIL = "collabwitharif@proton.me";
+const PHONE = "+91 70024 14638";
+const PHONE_HREF = "tel:+917002414638";
+
+const socials = [
+  { label: "Facebook", href: "https://www.facebook.com/hussainarif1994", icon: Facebook },
+  { label: "Instagram", href: "https://www.instagram.com/____.kyrios.____/", icon: Instagram },
+  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
+  { label: "Email", href: `mailto:${EMAIL}`, icon: Mail },
+];
+
+type Theme = { bg: string; fg: string; accent: string; disc: string };
+
+type Scene = {
+  id: string;
+  /** Giant word behind the portrait */
+  word: string;
+  /** Short label used in the nav + badge */
+  label: string;
+  icon: LucideIcon;
+  theme: Theme;
+  kicker: string;
+  title: string;
+  role?: string;
   desc: string;
-  badges: string[];
-  href: string;
-  logo: string;
-  icon: typeof Briefcase;
+  href?: string;
+  logo?: string;
+  itemsTitle: string;
+  items: { name: string; note?: string; href?: string }[];
 };
 
-const familyVentures: Venture[] = [
+const scenes: Scene[] = [
   {
-    name: "Arif Plastic Agency",
+    id: "intro",
+    word: "Arif Hussain",
+    label: "Hello",
+    icon: Hand,
+    theme: { bg: "#f8f6f0", fg: "#1f4b44", accent: "#e5a93b", disc: "#ffffff" },
+    kicker: "Hi, I'm Arif",
+    title: "One person, four roles.",
+    desc: "Developer, distributor, educator and trustee from Assam, India. Scroll to meet each one.",
+    itemsTitle: "In short",
+    items: [
+      { name: "08", note: "years building software" },
+      { name: "1999", note: "family business since" },
+      { name: "04", note: "roles, one person" },
+    ],
+  },
+  {
+    id: "developer",
+    word: "Developer",
+    label: "Developer",
+    icon: Code2,
+    theme: { bg: "#12332d", fg: "#f6f3ea", accent: "#e5a93b", disc: "#1d4a42" },
+    kicker: "01 — I write software",
+    title: "BigSur Corp",
+    role: "Founder & CEO",
+    desc: "I build reliable software systems — ERP, billing and a self-hosted business suite — end to end in TypeScript.",
+    href: "https://bigsur.in",
+    logo: "/BigSur-Corp-square.png",
+    itemsTitle: "Products",
+    items: [
+      { name: "ZiloOne", note: "Self-hosted business suite", href: "https://zilomail.in" },
+      { name: "Syntelix ERP", note: "Multi-tenant · 10k+ users", href: "https://bigsur.in/syntelix" },
+      { name: "Zilo System & WinAcc Pro", note: "GST billing · offline-first", href: "https://bigsur.in/zilosystem" },
+      { name: "GradeSync & DMS", note: "Schools & distribution", href: "https://bigsur.in/solutions" },
+    ],
+  },
+  {
+    id: "distributor",
+    word: "Distributor",
+    label: "Distributor",
+    icon: Truck,
+    theme: { bg: "#e5a93b", fg: "#1c2522", accent: "#1f4b44", disc: "#f3c467" },
+    kicker: "02 — I move goods",
+    title: "Arif Plastic Agency",
     role: "Sales Director",
-    category: "SUPER STOCKIST & DISTRIBUTION",
-    desc: "Premier regional super stockist & distribution partner since 1999 for leading MNC brands: Pidilite Industries, Mondelez India, Kimberly-Clark & Unicharm.",
-    badges: ["Est. 1999", "Pidilite & Mondelez Partner", "Mankachar"],
+    desc: "Regional super stockist and distribution partner since 1999, carrying leading brands across Mankachar and beyond.",
     href: "https://www.arifplasticagency.in",
     logo: "/arifplasticlogo.png",
-    icon: Truck,
+    itemsTitle: "Brands we carry",
+    items: [
+      { name: "Pidilite Industries" },
+      { name: "Mondelez India" },
+      { name: "Kimberly-Clark" },
+      { name: "Unicharm" },
+    ],
   },
   {
-    name: "BlueCrest Royal Academy",
+    id: "educator",
+    word: "Educator",
+    label: "Educator",
+    icon: GraduationCap,
+    theme: { bg: "#14305a", fg: "#f3f1ea", accent: "#8fc0ff", disc: "#1f4479" },
+    kicker: "03 — I run a school",
+    title: "BlueCrest Royal Academy",
     role: "Founder & Trustee",
-    category: "PREMIUM K-12 EDUCATION",
-    desc: "Prestigious educational institution from Kindergarten to Grade 12 at Kaloghat, South Salmara Mankachar, with modern labs, STEM programs & global standards.",
-    badges: ["K-12 Campus", "Under Abul Foundation", "South Salmara"],
+    desc: "A K-12 school at Kaloghat, South Salmara Mankachar, with modern labs, STEM programs and global standards.",
     href: "https://www.bluecrestroyalacademy.com",
     logo: "/bluecrestlogo.png",
-    icon: GraduationCap,
+    itemsTitle: "On campus",
+    items: [
+      { name: "Kindergarten → Grade 12" },
+      { name: "Modern labs & STEM" },
+      { name: "Run under Abul Foundation" },
+    ],
   },
   {
-    name: "Abul Foundation",
-    role: "Founder & Secretary (Trustee)",
-    category: "CHARITABLE FAMILY TRUST",
-    desc: "Registered non-profit trust (DARPAN ID: AS/2026/0952495) in memory of late Abul Hussain, advancing education scholarships, medical clinics & community welfare.",
-    badges: ["Darpan: AS/2026/0952495", "Education & Health", "Mankachar"],
+    id: "trustee",
+    word: "Trustee",
+    label: "Trustee",
+    icon: HeartHandshake,
+    theme: { bg: "#f0dfd0", fg: "#5b2618", accent: "#c8553d", disc: "#f8ede2" },
+    kicker: "04 — I give back",
+    title: "Abul Foundation",
+    role: "Founder & Secretary",
+    desc: "A registered non-profit trust in memory of late Abul Hussain, advancing education, healthcare and community welfare.",
     href: "https://www.abulfoundation.org",
     logo: "/abulfoundlogo.png",
-    icon: HeartHandshake,
+    itemsTitle: "What we fund",
+    items: [
+      { name: "Education scholarships" },
+      { name: "Medical clinics" },
+      { name: "Community welfare" },
+      { name: "Darpan AS/2026/0952495" },
+    ],
   },
 ];
 
-function IndexPage() {
-  const [activeNav, setActiveNav] = useState<"home" | "products" | "family-business" | "contact">("home");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const [copiedEmail, setCopiedEmail] = useState(false);
+const roles = scenes.slice(1);
+const LAST = scenes.length - 1;
+const RING = 2 * Math.PI * 196; // circumference of the progress ring
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("collabwitharif@proton.me");
-    setCopiedEmail(true);
-    setTimeout(() => setCopiedEmail(false), 2000);
-  };
+const zilooneShots = [
+  { src: "/ziloone/invoice.png", label: "Invoicing" },
+  { src: "/ziloone/accounting.png", label: "Accounting" },
+  { src: "/ziloone/crm-leads.png", label: "CRM" },
+  { src: "/ziloone/hr-employees.png", label: "HR" },
+  { src: "/ziloone/mail-calendar.png", label: "Mail" },
+  { src: "/ziloone/chat.png", label: "Chat" },
+];
+
+const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
+
+/* -------------------------------------------------------------------------- */
+/*                              Small components                              */
+/* -------------------------------------------------------------------------- */
+
+function Reveal({ children, delay = 0, className = "" }: { children: ReactNode; delay?: number; className?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+          io.disconnect();
+        }
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   return (
-    <div className="min-h-screen bg-[#f8f6f0] text-[#1c2522] selection:bg-[#e5a93b]/30 selection:text-[#1f4b44] flex flex-col justify-between overflow-x-hidden font-sans">
-      {/* Top Header Navigation */}
-      <header className="relative w-full max-w-7xl mx-auto px-5 sm:px-10 lg:px-16 pt-6 sm:pt-8 pb-4 flex items-center justify-between">
-        {/* Brand Logo */}
-        <div className="flex items-center gap-1">
-          <a
-            href="/"
-            onClick={() => {
-              setActiveNav("home");
-              window.scrollTo({ top: 0, behavior: "smooth" });
+    <div
+      ref={ref}
+      className={`reveal ${inView ? "is-visible" : ""} ${className}`}
+      style={{ "--delay": `${delay}ms` } as CSSProperties}
+    >
+      {children}
+    </div>
+  );
+}
+
+/**
+ * A word whose letters roll in from below when it becomes active and roll out
+ * through the top when the next one takes over.
+ */
+function RollingWord({ text, state }: { text: string; state: "before" | "active" | "after" }) {
+  const y = state === "active" ? "0%" : state === "before" ? "-110%" : "110%";
+  return (
+    <>
+      {text.split("").map((ch, i) => (
+        <span key={i} className="inline-block overflow-hidden py-[0.08em]">
+          <span
+            className="inline-block will-change-transform"
+            style={{
+              transform: `translateY(${y})`,
+              transition: `transform 0.8s ${EASE} ${i * 28}ms`,
             }}
-            className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#1f4b44] transition-transform hover:scale-105"
           >
-            <span className="text-[#1f4b44]">A</span>rif
-            <span className="text-[#e5a93b]">.</span>
-          </a>
+            {ch === " " ? " " : ch}
+          </span>
+        </span>
+      ))}
+    </>
+  );
+}
+
+/** Wraps scene content so it fades/slides with a per-line stagger. */
+function Line({ active, i, children, className = "" }: { active: boolean; i: number; children: ReactNode; className?: string }) {
+  return (
+    <div
+      className={className}
+      style={{
+        opacity: active ? 1 : 0,
+        transform: active ? "none" : "translateY(18px)",
+        transition: `opacity 0.6s ${EASE} ${active ? 150 + i * 70 : 0}ms, transform 0.6s ${EASE} ${active ? 150 + i * 70 : 0}ms`,
+      }}
+    >
+      {children}
+    </div>
+  );
+}
+
+function ZiloShowcase() {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setActive((i) => (i + 1) % zilooneShots.length), 3000);
+    return () => clearInterval(id);
+  }, [paused]);
+
+  return (
+    <div className="relative pb-12 pr-6 sm:pr-12" onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)}>
+      {/* Desktop dashboard in a browser frame */}
+      <div className="rounded-2xl border border-white/10 bg-white overflow-hidden shadow-[0_40px_80px_-30px_rgba(0,0,0,0.6)]">
+        <div className="flex items-center gap-1.5 px-4 py-3 border-b border-[#efeadf] bg-[#fbfaf6]">
+          <span className="w-2.5 h-2.5 rounded-full bg-[#e6e0d2]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#e6e0d2]" />
+          <span className="w-2.5 h-2.5 rounded-full bg-[#e6e0d2]" />
+          <span className="ml-3 text-[11px] font-mono text-[#8a948f]">zilomail.in</span>
         </div>
+        <img
+          src="/ziloone/00-dashboard.png"
+          alt="ZiloOne dashboard"
+          loading="lazy"
+          className="block w-full aspect-[16/10] object-cover object-top"
+        />
+      </div>
 
-        {/* Center Navigation Links (Desktop) */}
-        <nav className="hidden md:flex items-center gap-6 sm:gap-8 text-sm font-medium text-[#4a5551]">
-          <button
-            onClick={() => {
-              setActiveNav("home");
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-            className={`transition-all py-1 px-3.5 rounded-full ${
-              activeNav === "home"
-                ? "font-semibold text-[#1f4b44] tracking-tight bg-[#ede8dc]/80"
-                : "hover:text-[#1f4b44]"
-            }`}
-          >
-            (&nbsp;&nbsp;Home&nbsp;&nbsp;)
-          </button>
-          <a
-            href="#products"
-            onClick={() => setActiveNav("products")}
-            className={`transition-colors py-1 px-2 ${
-              activeNav === "products"
-                ? "font-semibold text-[#1f4b44]"
-                : "hover:text-[#1f4b44]"
-            }`}
-          >
-            Products
-          </a>
-          <a
-            href="#family-business"
-            onClick={() => setActiveNav("family-business")}
-            className={`transition-colors py-1 px-2 ${
-              activeNav === "family-business"
-                ? "font-semibold text-[#1f4b44]"
-                : "hover:text-[#1f4b44]"
-            }`}
-          >
-            Family Business
-          </a>
-          <button
-            onClick={() => setIsContactOpen(true)}
-            className={`transition-colors py-1 px-2 ${
-              activeNav === "contact"
-                ? "font-semibold text-[#1f4b44]"
-                : "hover:text-[#1f4b44]"
-            }`}
-          >
-            Contact
-          </button>
-        </nav>
-
-        {/* Right CTA Button & Mobile Hamburger Toggle */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          <button
-            onClick={() => setIsContactOpen(true)}
-            className="group relative inline-flex items-center gap-1.5 sm:gap-2 bg-[#1f4b44] hover:bg-[#183d36] text-white px-3.5 sm:px-6 py-2 sm:py-2.5 rounded-lg text-xs sm:text-sm font-semibold tracking-wide shadow-md shadow-[#1f4b44]/15 hover:shadow-lg hover:shadow-[#1f4b44]/25 transition-all duration-200 active:scale-95"
-          >
-            <Mail className="w-3.5 h-3.5 transition-transform group-hover:-translate-y-0.5" />
-            <span>Get in Touch</span>
-          </button>
-
-          {/* Mobile Hamburger Toggle */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 rounded-lg text-[#1f4b44] hover:bg-[#ede8dc]/80 transition-colors"
-            aria-label="Toggle Navigation Menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="w-5 h-5" />
-            ) : (
-              <Menu className="w-5 h-5" />
-            )}
-          </button>
+      {/* Phone cycling through the mobile apps */}
+      <div className="absolute bottom-0 right-0 w-[28%] min-w-[104px] animate-float">
+        <div className="relative aspect-[780/1688] rounded-[1.3rem] sm:rounded-[1.8rem] border-[5px] border-[#0b1f1b] bg-[#0b1f1b] overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6)]">
+          {zilooneShots.map((shot, i) => (
+            <img
+              key={shot.src}
+              src={shot.src}
+              alt={`ZiloOne ${shot.label}`}
+              loading="lazy"
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
+                i === active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
+              }`}
+            />
+          ))}
         </div>
+      </div>
 
-        {/* Mobile Navigation Dropdown Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-5 right-5 z-40 bg-white/95 backdrop-blur-md rounded-2xl p-4 shadow-xl border border-[#ede7d8] flex flex-col gap-2 animate-fade-in mt-1">
-            <button
-              onClick={() => {
-                setActiveNav("home");
-                setIsMobileMenuOpen(false);
-                window.scrollTo({ top: 0, behavior: "smooth" });
-              }}
-              className={`text-left py-2 px-3 rounded-xl text-sm font-medium transition-colors ${
-                activeNav === "home"
-                  ? "bg-[#edf2f0] text-[#1f4b44] font-bold"
-                  : "text-[#4a5551] hover:bg-gray-50"
+      {/* Which app is showing */}
+      <div className="absolute bottom-0 left-0 flex flex-wrap gap-1 max-w-[66%] text-[11px] font-medium">
+        {zilooneShots.map((shot, i) => (
+          <button
+            key={shot.src}
+            onClick={() => setActive(i)}
+            className={`rounded-full px-3 py-1 transition-colors duration-300 ${
+              i === active ? "bg-[#e5a93b] text-[#12332d]" : "text-white/50 hover:text-white"
+            }`}
+          >
+            {shot.label}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                    Page                                    */
+/* -------------------------------------------------------------------------- */
+
+function IndexPage() {
+  const stageRef = useRef<HTMLDivElement>(null);
+  const [scene, setScene] = useState(0);
+  const [past, setPast] = useState(false); // scrolled beyond the pinned stage
+  const [need, setNeed] = useState(0); // which role the visitor picked in contact
+  const [copied, setCopied] = useState(false);
+
+  // Map scroll position inside the tall stage → active scene + CSS progress vars
+  useEffect(() => {
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const el = stageRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const dist = rect.height - window.innerHeight;
+      const p = dist > 0 ? Math.min(Math.max(-rect.top / dist, 0), 1) : 0;
+      const f = p * LAST;
+      const idx = Math.round(f);
+      el.style.setProperty("--p", p.toFixed(4));
+      el.style.setProperty("--local", (f - idx).toFixed(4));
+      setScene(idx);
+      setPast(rect.bottom < 80);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const goTo = (i: number) => {
+    const el = stageRef.current;
+    if (!el) return;
+    const dist = el.offsetHeight - window.innerHeight;
+    window.scrollTo({ top: el.offsetTop + (dist * i) / LAST, behavior: "smooth" });
+  };
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText(EMAIL);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const current = scenes[scene];
+  const theme = past ? scenes[0].theme : current.theme;
+  const Badge = current.icon;
+  const needed = roles[need];
+
+  return (
+    <div
+      className="bg-[#f8f6f0] text-[#1c2522] selection:bg-[#e5a93b]/40"
+      style={
+        {
+          "--bg": theme.bg,
+          "--fg": theme.fg,
+          "--accent": theme.accent,
+          "--disc": theme.disc,
+        } as CSSProperties
+      }
+    >
+      {/* ------------------------------- Header ------------------------------- */}
+      <header
+        className={`fixed inset-x-0 top-0 z-50 text-[var(--fg)] transition-colors duration-700 ${
+          past ? "bg-[#f8f6f0]/85 backdrop-blur-md" : ""
+        }`}
+      >
+        <div className="mx-auto flex h-16 sm:h-20 max-w-[90rem] items-center justify-between px-6 sm:px-10">
+          <button onClick={() => goTo(0)} className="text-2xl font-extrabold tracking-tight animate-fade-in">
+            Arif<span className="text-[var(--accent)] transition-colors duration-700">.</span>
+          </button>
+
+          <div className="flex items-center gap-5">
+            <span
+              className={`hidden sm:block font-mono text-xs tabular-nums transition-opacity duration-500 ${
+                scene === 0 || past ? "opacity-0" : "opacity-70"
               }`}
             >
-              Home
-            </button>
+              0{Math.max(scene, 1)} / 0{LAST}
+            </span>
             <a
-              href="#products"
-              onClick={() => {
-                setActiveNav("products");
-                setIsMobileMenuOpen(false);
-              }}
-              className={`py-2 px-3 rounded-xl text-sm font-medium transition-colors ${
-                activeNav === "products"
-                  ? "bg-[#edf2f0] text-[#1f4b44] font-bold"
-                  : "text-[#4a5551] hover:bg-gray-50"
-              }`}
+              href="#contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-[var(--fg)] px-5 py-2.5 text-sm font-semibold text-[var(--bg)] transition-all duration-700 hover:gap-3 active:scale-95 animate-fade-in"
             >
-              Products &amp; Software
+              Say hello
+              <ArrowRight className="h-4 w-4" />
             </a>
-            <a
-              href="#family-business"
-              onClick={() => {
-                setActiveNav("family-business");
-                setIsMobileMenuOpen(false);
-              }}
-              className={`py-2 px-3 rounded-xl text-sm font-medium transition-colors ${
-                activeNav === "family-business"
-                  ? "bg-[#edf2f0] text-[#1f4b44] font-bold"
-                  : "text-[#4a5551] hover:bg-gray-50"
-              }`}
-            >
-              Family Business
-            </a>
-            <button
-              onClick={() => {
-                setIsMobileMenuOpen(false);
-                setIsContactOpen(true);
-              }}
-              className="text-left py-2 px-3 rounded-xl text-sm font-semibold text-[#1f4b44] hover:bg-[#edf2f0] transition-colors"
-            >
-              Contact Information
-            </button>
           </div>
-        )}
+        </div>
       </header>
 
-      {/* Main Hero Section */}
-      <main className="w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 pt-4 sm:pt-6 pb-12 flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-4 items-center relative">
-          
-          {/* LEFT COLUMN: Greeting, Name, Curved Arrow, Experience, Socials */}
-          <div className="lg:col-span-4 flex flex-col items-center lg:items-start text-center lg:text-left z-10 order-2 lg:order-1 pt-2 lg:pt-0">
-            {/* Greeting & Name */}
-            <div className="space-y-1">
-              <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-black tracking-tight text-[#1c2522] leading-tight">
-                Hy! I Am
-              </h2>
-              <h1 className="text-4xl sm:text-5xl lg:text-[54px] font-black tracking-tight text-[#e5a93b] leading-none">
-                Arif Hussain.
-              </h1>
-            </div>
-
-            {/* Playful Dashed Curved Arrow */}
-            <div className="hidden lg:block relative w-60 h-28 my-3 -ml-4 pointer-events-none">
-              <svg
-                viewBox="0 0 240 100"
-                className="w-full h-full overflow-visible"
-                fill="none"
+      {/* ---------------- The stage: one portrait, four roles ----------------- */}
+      <div ref={stageRef} style={{ height: `${scenes.length * 100}svh` }} className="relative">
+        <section
+          className="sticky top-0 h-[100svh] overflow-hidden bg-[var(--bg)] text-[var(--fg)] transition-colors duration-700 [--s:min(34svh,68vw)] lg:[--s:min(56svh,36vw)]"
+          aria-label={`${current.label}: ${current.title}`}
+        >
+          {/* Giant rolling word (drifts sideways with the scroll) */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-[9svh] h-[16svh] select-none lg:top-[11svh] lg:h-[28svh]"
+            style={{ transform: "translateX(calc(var(--local, 0) * -12vw))" }}
+          >
+            {scenes.map((s, i) => (
+              <div
+                key={s.id}
+                className="absolute inset-0 flex items-center justify-center whitespace-nowrap font-extrabold uppercase leading-none tracking-[-0.045em]"
+                style={{ fontSize: `min(27svh, ${128 / s.word.length}vw)` }}
               >
-                {/* Curved dashed stroke swinging left & pointing straight up towards the name */}
-                <path
-                  d="M 215 32 C 178 12, 122 18, 85 54 C 55 80, 30 72, 22 28"
-                  stroke="#2d5e54"
-                  strokeWidth="2.2"
-                  strokeDasharray="6 6"
-                  strokeLinecap="round"
-                  className="dashed-arrow-animate"
-                  style={{
-                    animation: "dash-draw 15s linear infinite",
-                  }}
-                />
-                {/* Solid connector right into arrow tip */}
-                <path
-                  d="M 22 28 L 22 18"
-                  stroke="#2d5e54"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                />
-                {/* Crisp symmetric upward chevron arrowhead matching original design */}
-                <path
-                  d="M 15 28 L 22 17 L 29 28"
-                  stroke="#2d5e54"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-
-            {/* Experience Block */}
-            <div className="flex items-center gap-3 mt-4 lg:mt-1">
-              <span className="text-4xl sm:text-5xl lg:text-[52px] font-black text-[#1f4b44] tracking-tight leading-none">
-                08
-              </span>
-              <div className="text-left font-bold text-[11px] sm:text-xs text-[#1f4b44] tracking-wider uppercase leading-tight">
-                YEARS
-                <br />
-                EXPERIENCE
+                <RollingWord text={s.word} state={i === scene ? "active" : i < scene ? "before" : "after"} />
               </div>
+            ))}
+          </div>
+
+          {/* Portrait — never moves; the ring fills as the roles go by */}
+          <div className="absolute left-1/2 top-[24svh] h-[var(--s)] w-[var(--s)] -translate-x-1/2 lg:bottom-[11svh] lg:top-auto">
+            <svg
+              viewBox="0 0 400 400"
+              className="pointer-events-none absolute -inset-[9%] h-[118%] w-[118%] animate-spin-slow opacity-25"
+            >
+              <circle cx="200" cy="200" r="196" fill="none" stroke="currentColor" strokeWidth="1.5" strokeDasharray="3 10" />
+            </svg>
+
+            <div className="absolute inset-0 rounded-full bg-[var(--disc)] transition-colors duration-700" />
+
+            <svg viewBox="0 0 400 400" className="pointer-events-none absolute inset-0 h-full w-full -rotate-90">
+              <circle cx="200" cy="200" r="196" fill="none" stroke="currentColor" strokeOpacity="0.15" strokeWidth="3" />
+              <circle
+                cx="200"
+                cy="200"
+                r="196"
+                fill="none"
+                stroke="var(--accent)"
+                strokeWidth="6"
+                strokeLinecap="round"
+                strokeDasharray={RING}
+                style={{
+                  strokeDashoffset: `calc(${RING}px * (1 - var(--p, 0)))`,
+                  transition: "stroke 0.7s",
+                }}
+              />
+            </svg>
+
+            {/* Cutout: clipped along the bottom of the disc, head pops out the top */}
+            <div
+              className="absolute inset-x-0 bottom-0 h-[124%] overflow-hidden"
+              style={{ clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)" }}
+            >
+              <img
+                src="/Intense Side-Gaze Portrait Cutout.png"
+                alt="Arif Hussain"
+                className="absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none animate-fade-up"
+                style={{ animationDelay: "250ms", filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.22))" }}
+              />
             </div>
 
-            {/* Social Media Icons */}
-            <div className="flex items-center gap-4 mt-8 lg:mt-10">
-              <a
-                href="https://www.facebook.com/hussainarif1994"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-                className="text-[#e5a93b] hover:text-[#1f4b44] transition-all transform hover:scale-110 active:scale-95"
-              >
-                <Facebook className="w-5 h-5 fill-current" />
-              </a>
-              <a
-                href="https://www.instagram.com/____.kyrios.____/"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-                className="text-[#e5a93b] hover:text-[#1f4b44] transition-all transform hover:scale-110 active:scale-95"
-              >
-                <Instagram className="w-5 h-5" />
-              </a>
-              <a
-                href="mailto:collabwitharif@proton.me"
-                aria-label="Email"
-                className="text-[#e5a93b] hover:text-[#1f4b44] transition-all transform hover:scale-110 active:scale-95"
-              >
-                <Mail className="w-5 h-5" strokeWidth={2.2} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-                className="text-[#e5a93b] hover:text-[#1f4b44] transition-all transform hover:scale-110 active:scale-95"
-              >
-                <Linkedin className="w-5 h-5 fill-current" />
-              </a>
+            {/* Role badge */}
+            <div
+              key={current.id}
+              className="absolute -right-2 bottom-[8%] flex items-center gap-2 rounded-full bg-[var(--fg)] px-3.5 py-2 text-xs font-semibold text-[var(--bg)] shadow-xl animate-pop-in sm:-right-6"
+            >
+              <Badge className="h-3.5 w-3.5" />
+              {current.label}
             </div>
           </div>
 
-          {/* CENTER COLUMN: Yellow Ring with Arif Hussain's Real Cutout Image */}
-          <div className="lg:col-span-4 flex justify-center items-center relative order-1 lg:order-2 my-2 lg:my-0">
-            <div className="relative group">
-              {/* Outer decorative ambient glow */}
-              <div className="absolute inset-0 rounded-full bg-[#e5a93b]/20 blur-3xl transform scale-110 pointer-events-none" />
+          {/* Scene copy — every scene is stacked here; only the active one shows */}
+          {scenes.map((s, i) => {
+            const active = i === scene;
+            return (
+              <div key={s.id} className={active ? "" : "pointer-events-none"} aria-hidden={!active}>
+                {/* Left (desktop) / below portrait (mobile) */}
+                <div className="absolute inset-x-6 top-[60.5svh] text-center lg:inset-x-auto lg:bottom-[13svh] lg:left-[max(2.5rem,calc(50vw-40rem))] lg:top-auto lg:w-[min(21rem,27vw)] lg:text-left">
+                  <Line active={active} i={0} className="font-mono text-[11px] uppercase tracking-[0.18em] opacity-70">
+                    {s.kicker}
+                  </Line>
+                  <Line active={active} i={1} className="mt-2 flex items-center justify-center gap-3 lg:mt-3 lg:justify-start">
+                    {s.logo && (
+                      <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-md lg:flex">
+                        <img src={s.logo} alt="" className="h-full w-full object-contain" />
+                      </span>
+                    )}
+                    <h2 className="text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">{s.title}</h2>
+                  </Line>
+                  {s.role && (
+                    <Line active={active} i={2} className="mt-1 text-sm font-semibold text-[var(--accent)]">
+                      {s.role}
+                    </Line>
+                  )}
+                  <Line
+                    active={active}
+                    i={3}
+                    className="mx-auto mt-2 max-w-sm text-[13px] leading-relaxed opacity-80 sm:text-sm lg:mx-0 lg:mt-4"
+                  >
+                    {s.desc}
+                  </Line>
+                  <Line active={active} i={4} className="mt-3 lg:mt-6">
+                    {s.href ? (
+                      <a
+                        href={s.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        tabIndex={active ? 0 : -1}
+                        className="group inline-flex items-center gap-1.5 text-sm font-semibold"
+                      >
+                        <span className="link-underline" data-active="true">
+                          {s.href.replace(/^https?:\/\/(www\.)?/, "")}
+                        </span>
+                        <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                      </a>
+                    ) : (
+                      <button
+                        onClick={() => goTo(1)}
+                        tabIndex={active ? 0 : -1}
+                        className="inline-flex items-center gap-2 text-sm font-semibold"
+                      >
+                        <span className="relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full border border-current/30">
+                          <ArrowDown className="h-4 w-4 animate-scroll-cue" />
+                        </span>
+                        Scroll
+                      </button>
+                    )}
+                  </Line>
+                </div>
 
-              {/* 3D Pop-Out Frame Container with Ample Headroom to Prevent Clipping */}
-              <div className="relative mx-auto w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] flex items-end justify-center">
-                {/* Yellow Ring Circle Background with Studio Lighting Gradient */}
-                <div
-                  className="absolute bottom-0 w-[250px] h-[250px] sm:w-[330px] sm:h-[330px] lg:w-[380px] lg:h-[380px] rounded-full border-[5px] sm:border-[6px] border-[#e5a93b]"
-                  style={{
-                    background: "radial-gradient(circle at 50% 36%, #ffffff 0%, #faf6ef 52%, #ede3cf 100%)",
-                    boxShadow: "inset 0 0 35px rgba(229,169,59,0.14), inset 0 -25px 45px rgba(31,75,68,0.06), 0 20px 50px rgba(229,169,59,0.22)",
-                  }}
-                />
-
-                {/* Real Cutout Image Container: rounded-b-full with Safari WebKit mask & clip-path fixes */}
-                <div
-                  className="relative z-10 w-[250px] h-[310px] sm:w-[330px] sm:h-[405px] lg:w-[380px] lg:h-[470px] overflow-hidden rounded-b-full pointer-events-none"
-                  style={{
-                    WebkitMaskImage: "-webkit-radial-gradient(white, black)",
-                    maskImage: "radial-gradient(white, black)",
-                    WebkitClipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)",
-                    clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)",
-                    transform: "translateZ(0)",
-                    WebkitTransform: "translateZ(0)",
-                    isolation: "isolate",
-                  }}
-                >
-                  <img
-                    src="/Intense Side-Gaze Portrait Cutout.png"
-                    alt="Arif Hussain"
-                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-auto h-[290px] sm:h-[385px] lg:h-[450px] max-w-none object-contain object-bottom pointer-events-auto transition-transform duration-500 hover:scale-[1.03] select-none"
-                    style={{
-                      filter: "drop-shadow(0 14px 28px rgba(31, 75, 68, 0.16))",
-                    }}
-                  />
-                  {/* Subtle bottom curve blend gradient */}
-                  <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-[#1f4b44]/10 to-transparent pointer-events-none rounded-b-full" />
+                {/* Right (desktop only) */}
+                <div className="absolute bottom-[13svh] right-[max(2.5rem,calc(50vw-40rem))] hidden w-[min(21rem,27vw)] lg:block">
+                  <Line active={active} i={1} className="font-mono text-[11px] uppercase tracking-[0.18em] opacity-70">
+                    {s.itemsTitle}
+                  </Line>
+                  <ul className="mt-3">
+                    {s.items.map((item, j) => {
+                      const inner = (
+                        <>
+                          <span className="flex items-baseline gap-3">
+                            <span className={s.id === "intro" ? "text-2xl font-extrabold tabular-nums" : "text-[15px] font-semibold"}>
+                              {item.name}
+                            </span>
+                            {item.note && <span className="text-xs opacity-65">{item.note}</span>}
+                          </span>
+                          {item.href && (
+                            <ArrowUpRight className="h-4 w-4 shrink-0 opacity-40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:opacity-100" />
+                          )}
+                        </>
+                      );
+                      return (
+                        <li key={item.name}>
+                          <Line active={active} i={2 + j} className="border-b border-current/15">
+                            {item.href ? (
+                              <a
+                                href={item.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                tabIndex={active ? 0 : -1}
+                                className="group flex items-center justify-between gap-3 py-3 transition-[padding] duration-300 hover:pl-2"
+                              >
+                                {inner}
+                              </a>
+                            ) : (
+                              <div className="flex items-center justify-between gap-3 py-3">{inner}</div>
+                            )}
+                          </Line>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
               </div>
-            </div>
-          </div>
+            );
+          })}
 
-          {/* RIGHT COLUMN: Tagline, Floating Production Systems Card, Software Developer Signature */}
-          <div className="lg:col-span-4 flex flex-col items-center lg:items-end justify-between h-full order-3 space-y-8 lg:space-y-12 text-center lg:text-right">
-            {/* Top Right Tagline */}
-            <div className="max-w-[280px] lg:pt-2">
-              <p className="text-sm sm:text-base text-[#4b5551] font-normal leading-relaxed">
-                I build reliable software systems,
-                <br />
-                and I love what I do.
-              </p>
-            </div>
+          {/* Role switcher */}
+          <nav className="absolute inset-x-0 bottom-0 flex h-[8svh] min-h-12 items-center justify-center gap-1 sm:gap-2" aria-label="Roles">
+            {roles.map((r, i) => {
+              const active = scene === i + 1;
+              return (
+                <button
+                  key={r.id}
+                  onClick={() => goTo(i + 1)}
+                  className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 ${
+                    active ? "bg-[var(--fg)] text-[var(--bg)]" : "opacity-50 hover:opacity-100"
+                  }`}
+                >
+                  <span className="font-mono">0{i + 1}</span>
+                  <span className={active ? "" : "hidden sm:inline"}>{r.label}</span>
+                </button>
+              );
+            })}
+          </nav>
+        </section>
+      </div>
 
-            {/* Floating Current Flagship / ZiloOne Card */}
+      {/* ------------------------- Now building: ZiloOne ---------------------- */}
+      <section className="bg-[#12332d] text-[#f6f3ea]">
+        <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 sm:px-10 sm:py-32 lg:grid-cols-12">
+          <Reveal className="lg:col-span-5">
+            <div className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#e5a93b]">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inset-0 animate-ping rounded-full bg-[#e5a93b] opacity-60" />
+                <span className="relative h-2 w-2 rounded-full bg-[#e5a93b]" />
+              </span>
+              Now building
+            </div>
+            <h2 className="mt-5 text-5xl font-extrabold tracking-[-0.04em] sm:text-7xl">ZiloOne</h2>
+            <p className="mt-5 max-w-md text-[15px] leading-relaxed text-white/70">
+              Invoicing, inventory, HR, accounting, CRM, mail, meetings, drive and docs — one self-hosted suite on a
+              single Linux server, with one sign-in.
+            </p>
             <a
               href="https://zilomail.in"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative block bg-white rounded-2xl p-4 sm:p-5 shadow-[0_12px_36px_rgba(31,75,68,0.08)] border border-[#ede7d8] w-full max-w-[250px] text-left transform transition-all duration-300 hover:-translate-y-1 hover:border-[#1f4b44]/40 group"
+              className="group mt-8 inline-flex items-center gap-2 rounded-full bg-[#e5a93b] px-6 py-3 text-sm font-semibold text-[#12332d] transition-all duration-300 hover:gap-3 active:scale-95"
             >
-              <div className="flex items-center justify-between mb-2.5">
-                <div className="flex items-center gap-1.5">
-                  <Code2 className="w-3.5 h-3.5 text-[#e5a93b]" />
-                  <span className="text-xs font-semibold text-[#4a5551]">
-                    Current Project
-                  </span>
-                </div>
-                <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-100">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                  Active Dev
-                </span>
-              </div>
-              <div className="flex items-center justify-between pt-1">
-                <div>
-                  <div className="text-sm sm:text-base font-extrabold text-[#1c2522] group-hover:text-[#1f4b44] tracking-tight transition-colors flex items-center gap-1">
-                    <span>ZiloOne Suite</span>
-                    <ExternalLink className="w-3 h-3 text-[#8a948f] opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                  <div className="text-[11px] text-[#6b7570] font-medium">
-                    zilomail.in
-                  </div>
-                </div>
-                <div className="text-right pl-2">
-                  <span className="text-xs font-mono font-bold text-[#1f4b44] bg-[#f8f6f0] px-1.5 py-0.5 rounded border border-[#eae4d6]">
-                    TypeScript
-                  </span>
-                  <div className="text-[10px] text-[#8a948f] font-semibold mt-0.5">
-                    End-to-End
-                  </div>
-                </div>
-              </div>
+              Visit zilomail.in
+              <ArrowUpRight className="h-4 w-4" />
             </a>
-
-            {/* Bottom Right Signature / Software Developer */}
-            <div className="space-y-0.5 pt-2">
-              <div className="font-creative text-4xl sm:text-5xl text-[#1f4b44] -rotate-6 transform origin-bottom-right inline-block pr-1 font-bold">
-                Software
-              </div>
-              <div className="text-xl sm:text-2xl font-black text-[#1f4b44] tracking-tight">
-                Developer<span className="text-[#e5a93b]">.</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </main>
-
-      {/* Products & Software Platforms Section (Directly after Hero) */}
-      <section id="products" className="w-full py-12 sm:py-14 px-6 sm:px-10 lg:px-16 bg-[#f2efe6] border-t border-[#e8e2d4]">
-        <div className="max-w-7xl mx-auto">
-          {/* Section Heading */}
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e6e0d2]">
-            <div>
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[#e5a93b] mb-1 flex items-center gap-1.5">
-                <Code2 className="w-3.5 h-3.5" />
-                <span>Featured Project &amp; Platforms</span>
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1f4b44] tracking-tight">
-                Software Engineered by Arif Hussain
-              </h2>
-            </div>
-            <a
-              href="https://bigsur.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#1f4b44] hover:text-[#e5a93b] transition-colors mt-2 sm:mt-0"
-            >
-              <span>BigSur Corp • bigsur.in</span>
-              <ExternalLink className="w-3 h-3" />
-            </a>
-          </div>
-
-          {/* FEATURED: ZiloOne — Minimal, Clean Architecture Card */}
-          <div className="bg-white rounded-2xl p-6 sm:p-8 border border-[#e5dfd2] shadow-sm mb-8 transition-all hover:border-[#1f4b44]/40">
-            <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-6">
-              <div className="max-w-2xl">
-                <div className="flex items-center gap-2 mb-2.5">
-                  <span className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 border border-emerald-200/60 px-2.5 py-0.5 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                    <span>Current Flagship Project</span>
-                  </span>
-                  <a
-                    href="https://zilomail.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-mono font-medium text-[#1f4b44] hover:text-[#e5a93b] transition-colors"
-                  >
-                    <span>zilomail.in</span>
-                    <ExternalLink className="w-2.5 h-2.5" />
-                  </a>
-                </div>
-
-                <div className="flex items-center gap-3">
-                  <a
-                    href="https://zilomail.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-2xl sm:text-3xl font-black text-[#1f4b44] hover:text-[#e5a93b] tracking-tight transition-colors inline-flex items-center gap-2 group"
-                  >
-                    <span>ZiloOne</span>
-                    <ExternalLink className="w-4 h-4 text-[#8a948f] group-hover:text-[#e5a93b] transition-colors" />
-                  </a>
-                </div>
-                <p className="text-sm font-semibold text-[#e5a93b] mt-0.5 mb-2.5">
-                  The Self-Hosted Workspace &amp; Business Suite
-                </p>
-
-                <p className="text-xs sm:text-sm text-[#55615d] leading-relaxed mb-4">
-                  Brings invoicing, inventory, HR, accounting, CRM, mail, meetings, drive, docs, and distribution management onto a single Linux server with central OpenID Connect authentication.
-                </p>
-
-                <div className="text-[11px] font-mono text-[#7a8581] mb-3">
-                  One installer • One sign-in • One admin panel • 100% TypeScript
-                </div>
-
-                {/* Clean tech stack pills */}
-                <div className="flex flex-wrap gap-1.5 text-[10px] font-mono text-[#1f4b44]">
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">TypeScript</span>
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">Next.js 15</span>
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">React 19</span>
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">PostgreSQL</span>
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">Redis</span>
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">Caddy</span>
-                  <span className="bg-[#f8f6f0] px-2.5 py-1 rounded border border-[#eae4d6]">ZiloSecur</span>
-                </div>
-              </div>
-
-              {/* Right side: Suite Modules summary & Visit zilomail.in button */}
-              <div className="lg:w-80 flex flex-col justify-between space-y-4 pt-4 lg:pt-0 border-t border-[#ede7d8] lg:border-t-0 lg:border-l lg:border-[#f0ece1] lg:pl-6">
-                <div>
-                  <div className="text-[10px] font-bold uppercase tracking-wider text-[#8a948f] mb-2.5">
-                    Integrated Applications
-                  </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs text-[#3c4743] font-medium">
-                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#e5a93b]" />ZiloInvoice</span>
-                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#e5a93b]" />ZiloAccounting</span>
-                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#e5a93b]" />ZiloCRM</span>
-                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#e5a93b]" />ZiloDMS</span>
-                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#e5a93b]" />ZiloHR &amp; ESS</span>
-                    <span className="flex items-center gap-1.5"><span className="w-1.5 h-1.5 rounded-full bg-[#e5a93b]" />ZiloMail &amp; Meet</span>
-                  </div>
-                </div>
-
-                <div className="pt-2">
-                  <a
-                    href="https://zilomail.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-between w-full bg-[#1f4b44] hover:bg-[#183d36] text-white px-4 py-2.5 rounded-xl text-xs font-semibold tracking-wide transition-all shadow-sm active:scale-95 group"
-                  >
-                    <span>Visit Platform · zilomail.in</span>
-                    <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {/* Syntelix ERP */}
-            <a
-              href="https://bigsur.in/syntelix"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white rounded-xl p-5 sm:p-6 border border-[#e5dfd2] hover:border-[#1f4b44]/40 hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#1f4b44] bg-[#edf2f0] px-2 py-0.5 rounded">
-                    ERP Platform
-                  </span>
-                  <span className="text-[11px] text-[#7a8581] font-mono">10k+ Users</span>
-                </div>
-                <h3 className="text-base font-bold text-[#1c2522] group-hover:text-[#1f4b44] transition-colors">
-                  Syntelix ERP Suite
-                </h3>
-                <p className="text-xs text-[#55615d] leading-relaxed mt-1.5">
-                  Multi-tenant business OS unifying sales, inventory, HR payroll, and multi-branch operations.
-                </p>
-                <div className="text-[11px] text-[#7a8581] font-mono mt-3">
-                  Multi-Tenant • Cloud &amp; Offline • Real-Time Sync
-                </div>
-              </div>
-              <div className="mt-4 pt-3 border-t border-[#f2ede4] flex items-center justify-between text-xs font-semibold text-[#1f4b44] group-hover:text-[#e5a93b] transition-colors">
-                <span>Explore Syntelix</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </div>
-            </a>
-
-            {/* Zilo System & WinAcc Pro */}
-            <a
-              href="https://bigsur.in/zilosystem"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white rounded-xl p-5 sm:p-6 border border-[#e5dfd2] hover:border-[#e5a93b]/60 hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#8a6827] bg-[#fbf5e8] px-2 py-0.5 rounded">
-                    Billing &amp; Finance
-                  </span>
-                  <span className="text-[11px] text-[#7a8581] font-mono">Offline-First</span>
-                </div>
-                <h3 className="text-base font-bold text-[#1c2522] group-hover:text-[#1f4b44] transition-colors">
-                  Zilo System &amp; WinAcc Pro
-                </h3>
-                <p className="text-xs text-[#55615d] leading-relaxed mt-1.5">
-                  High-speed GST invoicing, compliant e-invoicing, barcode billing, and local financial accounting.
-                </p>
-                <div className="text-[11px] text-[#7a8581] font-mono mt-3">
-                  GST Invoicing • Barcode POS • Local SQLite DB
-                </div>
-              </div>
-              <div className="mt-4 pt-3 border-t border-[#f2ede4] flex items-center justify-between text-xs font-semibold text-[#1f4b44] group-hover:text-[#e5a93b] transition-colors">
-                <span>Explore Zilo System</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </div>
-            </a>
-
-            {/* GradeSync & Distribution DMS */}
-            <a
-              href="https://bigsur.in/solutions"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group bg-white rounded-xl p-5 sm:p-6 border border-[#e5dfd2] hover:border-[#1f4b44]/40 hover:shadow-md transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between mb-3">
-                  <span className="text-[10px] font-semibold uppercase tracking-wider text-[#1f4b44] bg-[#edf2f0] px-2 py-0.5 rounded">
-                    Vertical Solutions
-                  </span>
-                  <span className="text-[11px] text-[#7a8581] font-mono">Specialized</span>
-                </div>
-                <h3 className="text-base font-bold text-[#1c2522] group-hover:text-[#1f4b44] transition-colors">
-                  GradeSync &amp; Distribution DMS
-                </h3>
-                <p className="text-xs text-[#55615d] leading-relaxed mt-1.5">
-                  Custom-built portals powering school academic workflows and FMCG supply chain distribution.
-                </p>
-                <div className="text-[11px] text-[#7a8581] font-mono mt-3">
-                  Student LMS • Route Operations • Supply Chain
-                </div>
-              </div>
-              <div className="mt-4 pt-3 border-t border-[#f2ede4] flex items-center justify-between text-xs font-semibold text-[#1f4b44] group-hover:text-[#e5a93b] transition-colors">
-                <span>Explore Solutions</span>
-                <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-              </div>
-            </a>
-          </div>
+          </Reveal>
+          <Reveal className="lg:col-span-7" delay={150}>
+            <ZiloShowcase />
+          </Reveal>
         </div>
       </section>
 
-      {/* Family Businesses & Community Foundations (Down Below) */}
-      <section
-        id="family-business"
-        className="w-full bg-[#f8f6f0] border-t border-[#e8e2d4] py-12 sm:py-14 px-6 sm:px-10 lg:px-16"
-      >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-8 pb-4 border-b border-[#e6e0d2]">
-            <div>
-              <div className="text-[11px] font-bold uppercase tracking-wider text-[#e5a93b] mb-1">
-                Family Enterprise &amp; Trusts
-              </div>
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1f4b44] tracking-tight">
-                Family Businesses &amp; Foundations
-              </h2>
-            </div>
-            <p className="text-xs text-[#6b7570] max-w-sm mt-2 sm:mt-0">
-              Super stockist distribution since 1999, K-12 education, and non-profit trusts.
-            </p>
-          </div>
+      {/* ------------------------------- Contact ------------------------------ */}
+      <section id="contact" className="mx-auto max-w-6xl px-6 py-24 text-center sm:px-10 sm:py-36">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/60">Which Arif do you need?</p>
+          <h2 className="mt-6 text-[clamp(2.25rem,7vw,5.5rem)] font-extrabold leading-[1] tracking-[-0.04em] text-[#1f4b44]">
+            I'm looking for
+            <br />
+            the{" "}
+            <span className="inline-block overflow-hidden align-bottom pb-[0.12em] -mb-[0.12em]">
+              <span
+                key={needed.id}
+                className="inline-block animate-rise rounded-[0.25em] px-[0.2em] transition-colors"
+                style={{ background: needed.theme.bg, color: needed.theme.fg }}
+              >
+                {needed.label.toLowerCase()}
+              </span>
+            </span>
+            <span className="text-[#e5a93b]">.</span>
+          </h2>
+        </Reveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-            {familyVentures.map((venture) => {
-              return (
-                <a
-                  key={venture.name}
-                  href={venture.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group bg-white rounded-xl p-5 sm:p-6 border border-[#e5dfd2] hover:border-[#e5a93b]/50 hover:shadow-md transition-all flex flex-col justify-between"
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div className="w-9 h-9 rounded-lg bg-[#f8f6f0] p-1.5 border border-[#eae4d6] flex items-center justify-center overflow-hidden">
-                        <img
-                          src={venture.logo}
-                          alt={venture.name}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                      <span className="text-[9px] font-bold uppercase tracking-wider text-[#1f4b44] bg-[#edf2f0] px-2 py-0.5 rounded">
-                        {venture.category}
-                      </span>
-                    </div>
-                    <h3 className="text-base font-bold text-[#1c2522] group-hover:text-[#1f4b44] transition-colors">
-                      {venture.name}
-                    </h3>
-                    <p className="text-xs font-semibold text-[#e5a93b] mt-0.5 mb-2">
-                      {venture.role}
-                    </p>
-                    <p className="text-xs text-[#5f6b67] leading-relaxed mb-3">
-                      {venture.desc}
-                    </p>
-                    <div className="text-[11px] text-[#7a8581] font-mono">
-                      {venture.badges.join(" • ")}
-                    </div>
-                  </div>
+        <Reveal delay={120} className="mt-10 flex flex-wrap justify-center gap-2">
+          {roles.map((r, i) => {
+            const Icon = r.icon;
+            const active = need === i;
+            return (
+              <button
+                key={r.id}
+                onClick={() => setNeed(i)}
+                aria-pressed={active}
+                className={`flex items-center gap-2 rounded-full border px-4 py-2.5 text-sm font-semibold transition-all duration-300 active:scale-95 ${
+                  active
+                    ? "border-[#1f4b44] bg-[#1f4b44] text-white"
+                    : "border-[#d9d2c2] text-[#1f4b44] hover:-translate-y-0.5 hover:bg-white"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+                {r.label}
+              </button>
+            );
+          })}
+        </Reveal>
 
-                  <div className="mt-4 pt-3 border-t border-[#f2ede4] flex items-center justify-between text-xs font-semibold text-[#1f4b44] group-hover:text-[#e5a93b] transition-colors">
-                    <span>Visit website</span>
-                    <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </div>
-                </a>
-              );
-            })}
-          </div>
-        </div>
+        <Reveal delay={240} className="mt-10 flex flex-wrap items-center justify-center gap-3">
+          <a
+            href={`mailto:${EMAIL}?subject=${encodeURIComponent(`Hello Arif — I'm looking for the ${needed.label.toLowerCase()}`)}`}
+            className="group inline-flex items-center gap-2 rounded-full bg-[#1f4b44] px-7 py-4 text-sm font-semibold text-white transition-all duration-300 hover:gap-3 hover:shadow-xl hover:shadow-[#1f4b44]/25 active:scale-95 sm:text-base"
+          >
+            <Mail className="h-4 w-4" />
+            Write to the {needed.label.toLowerCase()}
+            <ArrowRight className="h-4 w-4" />
+          </a>
+          <button
+            onClick={copyEmail}
+            className="inline-flex items-center gap-2 rounded-full border border-[#d9d2c2] px-5 py-4 text-sm font-semibold text-[#1f4b44] transition-all duration-300 hover:bg-white active:scale-95"
+          >
+            {copied ? <Check className="h-4 w-4 text-emerald-600" /> : <Copy className="h-4 w-4" />}
+            {copied ? "Copied!" : EMAIL}
+          </button>
+        </Reveal>
+
+        <Reveal delay={320} className="mt-8 flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm text-[#66706c]">
+          <a href={PHONE_HREF} className="flex items-center gap-1.5 transition-colors hover:text-[#1f4b44]">
+            <Phone className="h-3.5 w-3.5 text-[#e5a93b]" />
+            {PHONE}
+          </a>
+          <span className="flex items-center gap-1.5">
+            <MapPin className="h-3.5 w-3.5 text-[#e5a93b]" />
+            Guwahati &amp; Mankachar, Assam
+          </span>
+        </Reveal>
       </section>
 
-      {/* Footer */}
-      <footer className="w-full bg-[#1f4b44] text-[#f8f6f0] py-8 sm:py-10 px-5 sm:px-10 lg:px-16 border-t border-[#183c36]">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 text-center sm:text-left">
-          <div className="flex flex-col sm:flex-row items-center gap-2">
-            <span className="text-2xl font-black tracking-tight text-white">
-              Arif.
-            </span>
-            <span className="text-xs text-white/60">
-              — Founder &amp; CEO of BigSur Corp · Sales Director at Arif Plastic Agency
-            </span>
+      {/* ------------------------------- Footer ------------------------------- */}
+      <footer className="border-t border-[#e6e0d2]">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-6 py-8 text-xs text-[#66706c] sm:flex-row sm:px-10">
+          <span>
+            <span className="text-sm font-extrabold text-[#1f4b44]">
+              Arif<span className="text-[#e5a93b]">.</span>
+            </span>{" "}
+            · Developer, distributor, educator, trustee
+          </span>
+          <div className="flex items-center gap-1">
+            {socials.map(({ label, href, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target={href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                aria-label={label}
+                className="rounded-full p-2 text-[#1f4b44]/60 transition-all hover:-translate-y-0.5 hover:bg-white hover:text-[#1f4b44]"
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
           </div>
-
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-6 text-xs text-white/70">
-            <a href="mailto:collabwitharif@proton.me" className="hover:text-[#e5a93b] transition-colors">
-              collabwitharif@proton.me
-            </a>
-            <span className="hidden sm:inline">•</span>
-            <a href="tel:+917002414638" className="hover:text-[#e5a93b] transition-colors">
-              +91 70024 14638
-            </a>
-            <span className="hidden sm:inline">•</span>
-            <span>© 2026 Arif Hussain</span>
-          </div>
+          <span>© {new Date().getFullYear()} Arif Hussain</span>
         </div>
       </footer>
-
-      {/* CONTACT MODAL */}
-      {isContactOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fade-in overflow-y-auto">
-          <div className="bg-white rounded-3xl p-5 sm:p-8 max-w-md w-full shadow-2xl border border-[#ded7c6] relative my-auto max-h-[92vh] overflow-y-auto">
-            <button
-              onClick={() => setIsContactOpen(false)}
-              className="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-700 transition-colors"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="text-xs font-bold uppercase tracking-wider text-[#e5a93b] mb-1">
-              Connect Directly
-            </div>
-            <h3 className="text-2xl font-black text-[#1f4b44]">Let's Work Together</h3>
-            <p className="text-xs text-[#5e6b66] mt-1 mb-6">
-              Reach out for technology partnerships, enterprise ERP deployments, distribution inquiries, or philanthropy.
-            </p>
-
-            <div className="space-y-3">
-              {/* Email */}
-              <div className="p-3.5 rounded-xl bg-[#f8f6f0] border border-[#e5dfd2] flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <Mail className="w-4 h-4 text-[#1f4b44]" />
-                  <span className="text-xs font-medium text-[#1c2522]">
-                    collabwitharif@proton.me
-                  </span>
-                </div>
-                <button
-                  onClick={handleCopyEmail}
-                  className="p-1.5 rounded-lg hover:bg-white text-xs font-semibold text-[#1f4b44] flex items-center gap-1 transition-all"
-                >
-                  {copiedEmail ? (
-                    <Check className="w-3.5 h-3.5 text-emerald-600" />
-                  ) : (
-                    <Copy className="w-3.5 h-3.5" />
-                  )}
-                  <span>{copiedEmail ? "Copied" : "Copy"}</span>
-                </button>
-              </div>
-
-              {/* Phone */}
-              <a
-                href="tel:+917002414638"
-                className="p-3.5 rounded-xl bg-[#f8f6f0] border border-[#e5dfd2] flex items-center justify-between hover:border-[#e5a93b] transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <Phone className="w-4 h-4 text-[#1f4b44]" />
-                  <span className="text-xs font-medium text-[#1c2522]">
-                    +91 70024 14638
-                  </span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-              </a>
-
-              {/* Location */}
-              <div className="p-3.5 rounded-xl bg-[#f8f6f0] border border-[#e5dfd2] flex items-center gap-3">
-                <MapPin className="w-4 h-4 text-[#e5a93b]" />
-                <span className="text-xs font-medium text-[#1c2522]">
-                  Guwahati &amp; Mankachar, Assam, India
-                </span>
-              </div>
-
-              {/* Instagram */}
-              <a
-                href="https://www.instagram.com/____.kyrios.____/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3.5 rounded-xl bg-[#f8f6f0] border border-[#e5dfd2] flex items-center justify-between hover:border-[#e5a93b] transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <Instagram className="w-4 h-4 text-[#e5a93b]" />
-                  <span className="text-xs font-medium text-[#1c2522]">
-                    @____.kyrios.____
-                  </span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-              </a>
-
-              {/* Facebook */}
-              <a
-                href="https://www.facebook.com/hussainarif1994"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-3.5 rounded-xl bg-[#f8f6f0] border border-[#e5dfd2] flex items-center justify-between hover:border-[#e5a93b] transition-all"
-              >
-                <div className="flex items-center gap-3">
-                  <Facebook className="w-4 h-4 text-[#1f4b44]" />
-                  <span className="text-xs font-medium text-[#1c2522]">
-                    facebook.com/hussainarif1994
-                  </span>
-                </div>
-                <ArrowRight className="w-3.5 h-3.5 text-gray-400" />
-              </a>
-            </div>
-
-            <div className="mt-6 pt-4 border-t border-gray-100 flex justify-end">
-              <button
-                onClick={() => setIsContactOpen(false)}
-                className="px-4 py-2 bg-[#1f4b44] text-white rounded-lg text-xs font-semibold hover:bg-[#173b35] transition-all"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
