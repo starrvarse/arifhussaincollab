@@ -1,0 +1,34 @@
+# Arif Hussain
+
+> Arif Hussain is a software developer and entrepreneur from Assam, India. He is the founder and CEO of BigSur Corp, where he builds ZiloOne, Propus, Antopus, Syntelix ERP, Zilo System, Finora and GradeSync. He is also the sales director of Arif Plastic Agency, the founder and a trustee of BlueCrest Royal Academy, and the founder and secretary of Abul Foundation.
+
+Website: https://www.arifhussain.in/
+Based in: Guwahati and Mankachar, Assam, India
+Contact: collabwitharif@proton.me
+GitHub: https://github.com/starrvarse
+
+## The developer
+
+Arif has been writing software for eight years. In 2023 he founded BigSur Corp in Guwahati. He works across the whole stack: product, architecture, code, security and the Linux servers the software runs on. Most of his work is TypeScript, React, Next.js and Node.js on PostgreSQL, Prisma and Redis, with Rust for storage engines and desktop apps.
+
+## Software he has built
+
+- [ZiloOne](https://zilomail.in): self-hosted workspace and business suite. Mail, meetings, files, office apps, invoicing, inventory, accounting, HR and CRM on one Linux server with one sign-in. Written end to end in TypeScript. This is what he is building now.
+- [Propus](https://bigsur.in/propus): data platform with SQL, cache, streams, object storage and search in one server, compatible with PostgreSQL, Redis, Kafka and S3, on its own storage engine.
+- [Antopus](https://bigsur.in/antopus): embedded database in pure TypeScript with SQL, a typed ORM, documents, search, vectors and row-level security, in one file with zero dependencies.
+- [Syntelix ERP](https://bigsur.in/syntelix): multi-tenant ERP covering sales, purchasing, inventory, HR and payroll, a document drive and team chat.
+- [Zilo System](https://bigsur.in/zilosystem): offline-first GST billing and point of sale for retail and wholesale.
+- [Finora](https://bigsur.in/finora): offline accounting, inventory and payroll for Windows.
+- [GradeSync](https://bigsur.in/solutions/sms): school management covering admissions, attendance, exams, fees and parent portals.
+- [Distribution DMS](https://bigsur.in/solutions/dms): multi-depot stock, salesman routes and field order taking for FMCG distributors.
+
+## The other three roles
+
+- [Arif Plastic Agency](https://www.arifplasticagency.in): sales director. A regional super stockist and distribution partner in Mankachar, Assam, run by his family since 1999, carrying Pidilite Industries, Mondelez India, Kimberly-Clark and Unicharm.
+- [BlueCrest Royal Academy](https://www.bluecrestroyalacademy.com): founder and trustee. A K-12 school at Kaloghat, South Salmara Mankachar, Assam.
+- [Abul Foundation](https://www.abulfoundation.org): founder and secretary. A registered non-profit trust in memory of the late Abul Hussain, funding education scholarships, medical clinics and community welfare.
+
+## Company
+
+- [BigSur Corp](https://bigsur.in): the software company Arif founded in 2023.
+- [About BigSur Corp and its founder](https://bigsur.in/about)

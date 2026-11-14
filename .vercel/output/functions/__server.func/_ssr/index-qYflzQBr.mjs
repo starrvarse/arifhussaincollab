@@ -1,24 +1,67 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
-import { H as Hand, c as CodeXml, T as Truck, G as GraduationCap, e as HeartHandshake, a as ArrowRight, b as ArrowUpRight, A as ArrowDown, M as Mail, C as Check, d as Copy, P as Phone, f as MapPin, F as Facebook, I as Instagram, L as Linkedin } from "../_libs/lucide-react.mjs";
-const EMAIL = "collabwitharif@proton.me";
-const PHONE = "+91 70024 14638";
-const PHONE_HREF = "tel:+917002414638";
+import { c as PORTRAIT_SMALL, b as PORTRAIT, p as projects, s as stack, f as faqs, E as EMAIL, P as PHONE, a as PHONE_HREF, L as LOCATION, G as GITHUB, F as FACEBOOK, I as INSTAGRAM } from "./router-CplfeN09.mjs";
+import { H as Hand, c as CodeXml, T as Truck, e as GraduationCap, f as HeartHandshake, a as ArrowRight, b as ArrowUpRight, A as ArrowDown, M as Mail, C as Check, d as Copy, P as Phone, g as MapPin, G as Github, F as Facebook, I as Instagram } from "../_libs/lucide-react.mjs";
+import "../_libs/tanstack__query-core.mjs";
+import "../_libs/tanstack__react-query.mjs";
+import "../_libs/tanstack__react-router.mjs";
+import "../_libs/tanstack__router-core.mjs";
+import "../_libs/tanstack__history.mjs";
+import "../_libs/cookie-es.mjs";
+import "../_libs/seroval.mjs";
+import "../_libs/seroval-plugins.mjs";
+import "node:stream/web";
+import "node:stream";
+import "../_libs/react-dom.mjs";
+import "util";
+import "crypto";
+import "async_hooks";
+import "stream";
+import "../_libs/isbot.mjs";
 const socials = [{
-  label: "Facebook",
-  href: "https://www.facebook.com/hussainarif1994",
+  label: "Arif Hussain on GitHub",
+  href: GITHUB,
+  icon: Github
+}, {
+  label: "Arif Hussain on Facebook",
+  href: FACEBOOK,
   icon: Facebook
 }, {
-  label: "Instagram",
-  href: "https://www.instagram.com/____.kyrios.____/",
+  label: "Arif Hussain on Instagram",
+  href: INSTAGRAM,
   icon: Instagram
 }, {
-  label: "LinkedIn",
-  href: "https://linkedin.com",
-  icon: Linkedin
-}, {
-  label: "Email",
+  label: "Email Arif Hussain",
   href: `mailto:${EMAIL}`,
   icon: Mail
+}];
+const sections = [{
+  label: "About",
+  href: "#about"
+}, {
+  label: "Work",
+  href: "#work"
+}, {
+  label: "Stack",
+  href: "#stack"
+}, {
+  label: "Questions",
+  href: "#faq"
+}, {
+  label: "Contact",
+  href: "#contact"
+}];
+const facts = [{
+  term: "Based in",
+  value: "Assam, India"
+}, {
+  term: "Company",
+  value: "BigSur Corp"
+}, {
+  term: "Writing software",
+  value: "8 years"
+}, {
+  term: "Building now",
+  value: "ZiloOne"
 }];
 const scenes = [{
   id: "intro",
@@ -33,7 +76,7 @@ const scenes = [{
   },
   kicker: "Hi, I'm Arif",
   title: "One person, four roles.",
-  desc: "Developer, distributor, educator and trustee from Assam, India. Scroll to meet each one.",
+  desc: "Software developer, distributor, educator and trustee from Assam, India. Scroll to meet each one.",
   itemsTitle: "In short",
   items: [{
     name: "08",
@@ -61,7 +104,7 @@ const scenes = [{
   role: "Founder & CEO",
   desc: "I build reliable software systems — ERP, billing and a self-hosted business suite — end to end in TypeScript.",
   href: "https://bigsur.in",
-  logo: "/BigSur-Corp-square.png",
+  logo: "/img/bigsur-corp.webp",
   itemsTitle: "Products",
   items: [{
     name: "ZiloOne",
@@ -96,7 +139,7 @@ const scenes = [{
   role: "Sales Director",
   desc: "Regional super stockist and distribution partner since 1999, carrying leading brands across Mankachar and beyond.",
   href: "https://www.arifplasticagency.in",
-  logo: "/arifplasticlogo.png",
+  logo: "/img/arif-plastic-agency.webp",
   itemsTitle: "Brands we carry",
   items: [{
     name: "Pidilite Industries"
@@ -123,7 +166,7 @@ const scenes = [{
   role: "Founder & Trustee",
   desc: "A K-12 school at Kaloghat, South Salmara Mankachar, with modern labs, STEM programs and global standards.",
   href: "https://www.bluecrestroyalacademy.com",
-  logo: "/bluecrestlogo.png",
+  logo: "/img/bluecrest-royal-academy.webp",
   itemsTitle: "On campus",
   items: [{
     name: "Kindergarten → Grade 12"
@@ -148,7 +191,7 @@ const scenes = [{
   role: "Founder & Secretary",
   desc: "A registered non-profit trust in memory of late Abul Hussain, advancing education, healthcare and community welfare.",
   href: "https://www.abulfoundation.org",
-  logo: "/abulfoundlogo.png",
+  logo: "/img/abul-foundation.webp",
   itemsTitle: "What we fund",
   items: [{
     name: "Education scholarships"
@@ -164,22 +207,22 @@ const roles = scenes.slice(1);
 const LAST = scenes.length - 1;
 const RING = 2 * Math.PI * 196;
 const zilooneShots = [{
-  src: "/ziloone/invoice.png",
+  src: "/img/ziloone-invoice.webp",
   label: "Invoicing"
 }, {
-  src: "/ziloone/accounting.png",
+  src: "/img/ziloone-accounting.webp",
   label: "Accounting"
 }, {
-  src: "/ziloone/crm-leads.png",
+  src: "/img/ziloone-crm-leads.webp",
   label: "CRM"
 }, {
-  src: "/ziloone/hr-employees.png",
+  src: "/img/ziloone-hr-employees.webp",
   label: "HR"
 }, {
-  src: "/ziloone/mail-calendar.png",
+  src: "/img/ziloone-mail-calendar.webp",
   label: "Mail"
 }, {
-  src: "/ziloone/chat.png",
+  src: "/img/ziloone-chat.webp",
   label: "Chat"
 }];
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -247,10 +290,10 @@ function ZiloShowcase() {
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2.5 h-2.5 rounded-full bg-[#e6e0d2]" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "ml-3 text-[11px] font-mono text-[#8a948f]", children: "zilomail.in" })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/ziloone/00-dashboard.png", alt: "ZiloOne dashboard", loading: "lazy", className: "block w-full aspect-[16/10] object-cover object-top" })
+      /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/img/ziloone-dashboard.webp", srcSet: "/img/ziloone-dashboard-800.webp 800w, /img/ziloone-dashboard.webp 1600w", sizes: "(min-width: 1024px) 560px, 90vw", width: 1600, height: 1e3, alt: "ZiloOne dashboard: sales, purchases, receivables and cash for the month", loading: "lazy", decoding: "async", className: "block w-full aspect-[16/10] object-cover object-top" })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 right-0 w-[28%] min-w-[104px] animate-float", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative aspect-[780/1688] rounded-[1.3rem] sm:rounded-[1.8rem] border-[5px] border-[#0b1f1b] bg-[#0b1f1b] overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6)]", children: zilooneShots.map((shot, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: shot.src, alt: `ZiloOne ${shot.label}`, loading: "lazy", className: `absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${i === active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}` }, shot.src)) }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 flex flex-wrap gap-1 max-w-[66%] text-[11px] font-medium", children: zilooneShots.map((shot, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setActive(i), className: `rounded-full px-3 py-1 transition-colors duration-300 ${i === active ? "bg-[#e5a93b] text-[#12332d]" : "text-white/50 hover:text-white"}`, children: shot.label }, shot.src)) })
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 right-0 w-[28%] min-w-[104px] animate-float", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "relative aspect-[780/1688] rounded-[1.3rem] sm:rounded-[1.8rem] border-[5px] border-[#0b1f1b] bg-[#0b1f1b] overflow-hidden shadow-[0_24px_48px_-12px_rgba(0,0,0,0.6)]", children: zilooneShots.map((shot, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: shot.src, alt: `ZiloOne ${shot.label} on a phone`, width: 480, height: 1039, loading: "lazy", decoding: "async", className: `absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${i === active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"}` }, shot.src)) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute bottom-0 left-0 flex flex-wrap gap-1 max-w-[66%] text-[11px] font-medium", children: zilooneShots.map((shot, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setActive(i), "aria-pressed": i === active, className: `rounded-full px-3 py-1 transition-colors duration-300 ${i === active ? "bg-[#e5a93b] text-[#12332d]" : "text-white/50 hover:text-white"}`, children: shot.label }, shot.src)) })
   ] });
 }
 function IndexPage() {
@@ -334,11 +377,14 @@ function IndexPage() {
     /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: stageRef, style: {
       height: `${scenes.length * 100}svh`
     }, className: "relative", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { className: "sticky top-0 h-[100svh] overflow-hidden bg-[var(--bg)] text-[var(--fg)] transition-colors duration-700 [--s:min(34svh,68vw)] lg:[--s:min(56svh,36vw)]", "aria-label": `${current.label}: ${current.title}`, children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { "aria-hidden": true, className: "pointer-events-none absolute inset-x-0 top-[9svh] h-[16svh] select-none lg:top-[11svh] lg:h-[28svh]", style: {
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "pointer-events-none absolute inset-x-0 top-[9svh] h-[16svh] select-none lg:top-[11svh] lg:h-[28svh]", style: {
         transform: "translateX(calc(var(--local, 0) * -12vw))"
-      }, children: scenes.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 flex items-center justify-center whitespace-nowrap font-extrabold uppercase leading-none tracking-[-0.045em]", style: {
-        fontSize: `min(27svh, ${128 / s.word.length}vw)`
-      }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(RollingWord, { text: s.word, state: i === scene ? "active" : i < scene ? "before" : "after" }) }, s.id)) }),
+      }, children: scenes.map((s, i) => {
+        const Word = i === 0 ? "h1" : "div";
+        return /* @__PURE__ */ jsxRuntimeExports.jsx(Word, { "aria-hidden": i === 0 ? void 0 : true, "aria-label": i === 0 ? "Arif Hussain" : void 0, className: "absolute inset-0 m-0 flex items-center justify-center whitespace-nowrap font-extrabold uppercase leading-none tracking-[-0.045em]", style: {
+          fontSize: `min(27svh, ${128 / s.word.length}vw)`
+        }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { "aria-hidden": true, className: "contents", children: /* @__PURE__ */ jsxRuntimeExports.jsx(RollingWord, { text: s.word, state: i === scene ? "active" : i < scene ? "before" : "after" }) }) }, s.id);
+      }) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute left-1/2 top-[24svh] h-[var(--s)] w-[var(--s)] -translate-x-1/2 lg:bottom-[11svh] lg:top-auto", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("svg", { viewBox: "0 0 400 400", className: "pointer-events-none absolute -inset-[9%] h-[118%] w-[118%] animate-spin-slow opacity-25", children: /* @__PURE__ */ jsxRuntimeExports.jsx("circle", { cx: "200", cy: "200", r: "196", fill: "none", stroke: "currentColor", strokeWidth: "1.5", strokeDasharray: "3 10" }) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-0 rounded-full bg-[var(--disc)] transition-colors duration-700" }),
@@ -351,7 +397,7 @@ function IndexPage() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-0 bottom-0 h-[124%] overflow-hidden", style: {
           clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)"
-        }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: "/Intense Side-Gaze Portrait Cutout.png", alt: "Arif Hussain", className: "absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none animate-fade-up", style: {
+        }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: PORTRAIT, srcSet: `${PORTRAIT_SMALL} 720w, ${PORTRAIT} 1254w`, sizes: "(min-width: 1024px) min(67vh, 43vw), min(41vh, 81vw)", width: 1254, height: 1254, alt: "Portrait of Arif Hussain, software developer from Assam, India", fetchPriority: "high", decoding: "async", className: "absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none animate-fade-up", style: {
           animationDelay: "250ms",
           filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.22))"
         } }) }),
@@ -366,7 +412,7 @@ function IndexPage() {
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute inset-x-6 top-[60.5svh] text-center lg:inset-x-auto lg:bottom-[13svh] lg:left-[max(2.5rem,calc(50vw-40rem))] lg:top-auto lg:w-[min(21rem,27vw)] lg:text-left", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Line, { active, i: 0, className: "font-mono text-[11px] uppercase tracking-[0.18em] opacity-70", children: s.kicker }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Line, { active, i: 1, className: "mt-2 flex items-center justify-center gap-3 lg:mt-3 lg:justify-start", children: [
-              s.logo && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-md lg:flex", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: s.logo, alt: "", className: "h-full w-full object-contain" }) }),
+              s.logo && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-md lg:flex", children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: s.logo, alt: `${s.title} logo`, width: 44, height: 44, loading: "lazy", decoding: "async", className: "h-full w-full object-contain" }) }),
               /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl", children: s.title })
             ] }),
             s.role && /* @__PURE__ */ jsxRuntimeExports.jsx(Line, { active, i: 2, className: "mt-1 text-sm font-semibold text-[var(--accent)]", children: s.role }),
@@ -405,6 +451,51 @@ function IndexPage() {
         ] }, r.id);
       }) })
     ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "about", className: "mx-auto max-w-6xl scroll-mt-20 px-6 py-24 sm:px-10 sm:py-32", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-10 lg:grid-cols-12 lg:gap-12", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { className: "lg:col-span-5", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70", children: "About Arif Hussain" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-5xl", children: [
+          "A developer who runs the businesses he writes software for",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[#e5a93b]", children: "." })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { delay: 120, className: "lg:col-span-7", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-5 text-[15px] leading-relaxed text-[#3c4743] sm:text-[17px]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+            "I'm ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { className: "font-semibold text-[#1c2522]", children: "Arif Hussain" }),
+            ", a software developer and founder from Assam, India. I've been writing software for eight years, and in 2023 I started",
+            " ",
+            /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: "https://bigsur.in", target: "_blank", rel: "noopener", className: "font-semibold text-[#1f4b44] underline decoration-[#e5a93b] decoration-2 underline-offset-4", children: "BigSur Corp" }),
+            " ",
+            "in Guwahati to turn that work into products: a self-hosted business suite, a multi-tenant ERP, offline billing and accounting, and a data platform."
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "I like owning the whole stack: product, architecture, code, security and the Linux servers it runs on. Most of it is TypeScript, React and Node.js on PostgreSQL, with Rust where speed matters." }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "I also know the other side of the screen. My family has run a distribution agency in Mankachar since 1999, and I founded a K-12 school and a charitable trust there. So when I build billing, distribution or school software, I'm building for work I do myself." })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("dl", { className: "mt-10 grid grid-cols-2 gap-x-8 sm:grid-cols-4", children: facts.map((f) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border-t border-[#d9d2c2] py-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("dt", { className: "font-mono text-[10px] uppercase tracking-[0.16em] text-[#66706c]", children: f.term }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("dd", { className: "mt-1.5 text-[15px] font-bold text-[#1f4b44]", children: f.value })
+        ] }, f.term)) })
+      ] })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "work", className: "scroll-mt-20 border-y border-[#e6e0d2] bg-white", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70", children: "Selected work" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-6xl", children: [
+          "Software I've built",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[#e5a93b]", children: "." })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "mt-12 grid gap-x-12 sm:grid-cols-2 lg:gap-x-16", children: projects.map((p, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Reveal, { delay: i % 2 * 100, children: /* @__PURE__ */ jsxRuntimeExports.jsxs("a", { href: p.href, target: "_blank", rel: "noopener", className: "group block border-t border-[#e6e0d2] py-7 transition-[padding] duration-300 hover:pl-2", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between gap-4", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-xl font-extrabold tracking-tight text-[#1f4b44] sm:text-2xl", children: p.name }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpRight, { className: "h-5 w-5 shrink-0 text-[#1f4b44]/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#1f4b44]" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[#8a5f0e]", children: p.kind }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-3 max-w-md text-sm leading-relaxed text-[#4a5551]", children: p.desc })
+      ] }) }) }, p.name)) })
+    ] }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx("section", { className: "bg-[#12332d] text-[#f6f3ea]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 sm:px-10 sm:py-32 lg:grid-cols-12", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { className: "lg:col-span-5", children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#e5a93b]", children: [
@@ -423,7 +514,33 @@ function IndexPage() {
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(Reveal, { className: "lg:col-span-7", delay: 150, children: /* @__PURE__ */ jsxRuntimeExports.jsx(ZiloShowcase, {}) })
     ] }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "contact", className: "mx-auto max-w-6xl px-6 py-24 text-center sm:px-10 sm:py-36", children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "stack", className: "mx-auto max-w-6xl scroll-mt-20 px-6 pt-24 sm:px-10 sm:pt-32", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70", children: "Stack" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-6xl", children: [
+          "What I build with",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[#e5a93b]", children: "." })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mt-12 grid grid-cols-2 gap-x-8 lg:grid-cols-3 lg:gap-x-16", children: stack.map((s, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { delay: i % 3 * 80, className: "border-t border-[#d9d2c2] py-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-mono text-[10px] uppercase tracking-[0.16em] text-[#66706c]", children: s.group }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "mt-3 space-y-1.5 text-[15px] font-semibold text-[#1f4b44]", children: s.items.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { children: item }, item)) })
+      ] }, s.group)) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("section", { id: "faq", className: "mx-auto max-w-6xl scroll-mt-20 px-6 pt-24 sm:px-10 sm:pt-32", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "grid gap-10 lg:grid-cols-12 lg:gap-12", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { className: "lg:col-span-4", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70", children: "Questions" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-5xl", children: [
+          "The short answers",
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[#e5a93b]", children: "." })
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "lg:col-span-8", children: faqs.map((f, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { delay: i * 60, className: "border-t border-[#d9d2c2] py-6", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-bold tracking-tight text-[#1f4b44]", children: f.q }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mt-2 max-w-2xl text-[15px] leading-relaxed text-[#3c4743]", children: f.a })
+      ] }, f.q)) })
+    ] }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("section", { id: "contact", className: "mx-auto max-w-6xl scroll-mt-10 px-6 py-24 text-center sm:px-10 sm:py-36", children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Reveal, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/60", children: "Which Arif do you need?" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("h2", { className: "mt-6 text-[clamp(2.25rem,7vw,5.5rem)] font-extrabold leading-[1] tracking-[-0.04em] text-[#1f4b44]", children: [
@@ -465,7 +582,7 @@ function IndexPage() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "flex items-center gap-1.5", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { className: "h-3.5 w-3.5 text-[#e5a93b]" }),
-          "Guwahati & Mankachar, Assam"
+          LOCATION
         ] })
       ] })
     ] }),
@@ -478,11 +595,12 @@ function IndexPage() {
         " ",
         "· Developer, distributor, educator, trustee"
       ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { "aria-label": "On this page", className: "flex flex-wrap justify-center gap-x-5 gap-y-1 font-medium", children: sections.map((s) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href: s.href, className: "transition-colors hover:text-[#1f4b44]", children: s.label }, s.href)) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1", children: socials.map(({
         label,
         href,
         icon: Icon
-      }) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href, target: href.startsWith("http") ? "_blank" : void 0, rel: "noopener noreferrer", "aria-label": label, className: "rounded-full p-2 text-[#1f4b44]/60 transition-all hover:-translate-y-0.5 hover:bg-white hover:text-[#1f4b44]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { className: "h-4 w-4" }) }, label)) }),
+      }) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { href, target: href.startsWith("http") ? "_blank" : void 0, rel: href === GITHUB ? "me noopener" : "noopener noreferrer", "aria-label": label, className: "rounded-full p-2 text-[#1f4b44]/60 transition-all hover:-translate-y-0.5 hover:bg-white hover:text-[#1f4b44]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Icon, { className: "h-4 w-4" }) }, label)) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
         "© ",
         (/* @__PURE__ */ new Date()).getFullYear(),

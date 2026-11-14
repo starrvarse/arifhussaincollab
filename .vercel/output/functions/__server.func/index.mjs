@@ -77,22 +77,26 @@ const headers = ((m) => function headersRouteRule(event) {
   }
 });
 const findRouteRules = /* @__PURE__ */ (() => {
-  const $0 = [{ name: "headers", route: "/assets/**", handler: headers, options: { "cache-control": "public, max-age=31536000, immutable" } }];
+  const $0 = [{ name: "headers", route: "/img/**", handler: headers, options: { "cache-control": "public, max-age=2592000, stale-while-revalidate=86400" } }], $1 = [{ name: "headers", route: "/fonts/**", handler: headers, options: { "cache-control": "public, max-age=31536000, immutable" } }], $2 = [{ name: "headers", route: "/assets/**", handler: headers, options: { "cache-control": "public, max-age=31536000, immutable" } }];
   return (m, p) => {
     let r = [];
     if (p.charCodeAt(p.length - 1) === 47) p = p.slice(0, -1) || "/";
     let s = p.split("/"), l = s.length;
     if (l > 1) {
-      if (s[1] === "assets") {
+      if (s[1] === "img") {
         r.unshift({ data: $0, params: { "_": s.slice(2).join("/") } });
+      } else if (s[1] === "fonts") {
+        r.unshift({ data: $1, params: { "_": s.slice(2).join("/") } });
+      } else if (s[1] === "assets") {
+        r.unshift({ data: $2, params: { "_": s.slice(2).join("/") } });
       }
     }
     return r;
   };
 })();
-const _lazy_bEyLoy = defineLazyEventHandler(() => import("./_chunks/ssr-renderer.mjs"));
+const _lazy_AEMbEA = defineLazyEventHandler(() => import("./_chunks/ssr-renderer.mjs"));
 const findRoute = /* @__PURE__ */ (() => {
-  const data = { route: "/**", handler: _lazy_bEyLoy };
+  const data = { route: "/**", handler: _lazy_AEMbEA };
   return ((_m, p) => {
     return { data, params: { "_": p.slice(1) } };
   });

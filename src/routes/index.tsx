@@ -3,7 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import {
   Instagram,
   Facebook,
-  Linkedin,
+  Github,
   Mail,
   MapPin,
   Phone,
@@ -20,28 +20,55 @@ import {
   type LucideIcon,
 } from "lucide-react";
 
+import {
+  DESCRIPTION,
+  EMAIL,
+  FACEBOOK,
+  GITHUB,
+  INSTAGRAM,
+  LOCATION,
+  PHONE,
+  PHONE_HREF,
+  PORTRAIT,
+  PORTRAIT_SMALL,
+  SHARE_DESCRIPTION,
+  SHARE_IMAGE,
+  SITE_URL,
+  TITLE,
+  faqs,
+  projects,
+  stack,
+  structuredData,
+} from "../lib/site";
+
+const SHARE_ALT = "Arif Hussain, software developer and founder of BigSur Corp";
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Arif Hussain — Founder, Tech Entrepreneur & Leader" },
-      {
-        name: "description",
-        content:
-          "Founder & CEO of BigSur Corp. Sales Director at Arif Plastic Agency. Founder & Trustee of BlueCrest Royal Academy. Trustee at Abul Foundation.",
-      },
-      {
-        property: "og:title",
-        content: "Arif Hussain — Founder, Tech Entrepreneur & Leader",
-      },
-      {
-        property: "og:description",
-        content:
-          "Building enterprise software solutions, distribution networks, and educational institutions in Assam, India.",
-      },
-      {
-        property: "og:image",
-        content: "/Intense Side-Gaze Portrait Cutout.png",
-      },
+      { title: TITLE },
+      { name: "description", content: DESCRIPTION },
+      { property: "og:type", content: "profile" },
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: SHARE_DESCRIPTION },
+      { property: "og:image", content: SHARE_IMAGE },
+      { property: "og:image:type", content: "image/jpeg" },
+      { property: "og:image:width", content: "1200" },
+      { property: "og:image:height", content: "630" },
+      { property: "og:image:alt", content: SHARE_ALT },
+      { property: "profile:first_name", content: "Arif" },
+      { property: "profile:last_name", content: "Hussain" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: SHARE_DESCRIPTION },
+      { name: "twitter:image", content: SHARE_IMAGE },
+      { name: "twitter:image:alt", content: SHARE_ALT },
+      { "script:ld+json": structuredData() },
+    ],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/` },
+      { rel: "me", href: GITHUB },
     ],
   }),
   component: IndexPage,
@@ -51,15 +78,26 @@ export const Route = createFileRoute("/")({
 /*                                    Data                                    */
 /* -------------------------------------------------------------------------- */
 
-const EMAIL = "collabwitharif@proton.me";
-const PHONE = "+91 70024 14638";
-const PHONE_HREF = "tel:+917002414638";
-
 const socials = [
-  { label: "Facebook", href: "https://www.facebook.com/hussainarif1994", icon: Facebook },
-  { label: "Instagram", href: "https://www.instagram.com/____.kyrios.____/", icon: Instagram },
-  { label: "LinkedIn", href: "https://linkedin.com", icon: Linkedin },
-  { label: "Email", href: `mailto:${EMAIL}`, icon: Mail },
+  { label: "Arif Hussain on GitHub", href: GITHUB, icon: Github },
+  { label: "Arif Hussain on Facebook", href: FACEBOOK, icon: Facebook },
+  { label: "Arif Hussain on Instagram", href: INSTAGRAM, icon: Instagram },
+  { label: "Email Arif Hussain", href: `mailto:${EMAIL}`, icon: Mail },
+];
+
+const sections = [
+  { label: "About", href: "#about" },
+  { label: "Work", href: "#work" },
+  { label: "Stack", href: "#stack" },
+  { label: "Questions", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
+const facts = [
+  { term: "Based in", value: "Assam, India" },
+  { term: "Company", value: "BigSur Corp" },
+  { term: "Writing software", value: "8 years" },
+  { term: "Building now", value: "ZiloOne" },
 ];
 
 type Theme = { bg: string; fg: string; accent: string; disc: string };
@@ -91,7 +129,7 @@ const scenes: Scene[] = [
     theme: { bg: "#f8f6f0", fg: "#1f4b44", accent: "#e5a93b", disc: "#ffffff" },
     kicker: "Hi, I'm Arif",
     title: "One person, four roles.",
-    desc: "Developer, distributor, educator and trustee from Assam, India. Scroll to meet each one.",
+    desc: "Software developer, distributor, educator and trustee from Assam, India. Scroll to meet each one.",
     itemsTitle: "In short",
     items: [
       { name: "08", note: "years building software" },
@@ -110,7 +148,7 @@ const scenes: Scene[] = [
     role: "Founder & CEO",
     desc: "I build reliable software systems — ERP, billing and a self-hosted business suite — end to end in TypeScript.",
     href: "https://bigsur.in",
-    logo: "/BigSur-Corp-square.png",
+    logo: "/img/bigsur-corp.webp",
     itemsTitle: "Products",
     items: [
       { name: "ZiloOne", note: "Self-hosted business suite", href: "https://zilomail.in" },
@@ -130,7 +168,7 @@ const scenes: Scene[] = [
     role: "Sales Director",
     desc: "Regional super stockist and distribution partner since 1999, carrying leading brands across Mankachar and beyond.",
     href: "https://www.arifplasticagency.in",
-    logo: "/arifplasticlogo.png",
+    logo: "/img/arif-plastic-agency.webp",
     itemsTitle: "Brands we carry",
     items: [
       { name: "Pidilite Industries" },
@@ -150,7 +188,7 @@ const scenes: Scene[] = [
     role: "Founder & Trustee",
     desc: "A K-12 school at Kaloghat, South Salmara Mankachar, with modern labs, STEM programs and global standards.",
     href: "https://www.bluecrestroyalacademy.com",
-    logo: "/bluecrestlogo.png",
+    logo: "/img/bluecrest-royal-academy.webp",
     itemsTitle: "On campus",
     items: [
       { name: "Kindergarten → Grade 12" },
@@ -169,7 +207,7 @@ const scenes: Scene[] = [
     role: "Founder & Secretary",
     desc: "A registered non-profit trust in memory of late Abul Hussain, advancing education, healthcare and community welfare.",
     href: "https://www.abulfoundation.org",
-    logo: "/abulfoundlogo.png",
+    logo: "/img/abul-foundation.webp",
     itemsTitle: "What we fund",
     items: [
       { name: "Education scholarships" },
@@ -185,12 +223,12 @@ const LAST = scenes.length - 1;
 const RING = 2 * Math.PI * 196; // circumference of the progress ring
 
 const zilooneShots = [
-  { src: "/ziloone/invoice.png", label: "Invoicing" },
-  { src: "/ziloone/accounting.png", label: "Accounting" },
-  { src: "/ziloone/crm-leads.png", label: "CRM" },
-  { src: "/ziloone/hr-employees.png", label: "HR" },
-  { src: "/ziloone/mail-calendar.png", label: "Mail" },
-  { src: "/ziloone/chat.png", label: "Chat" },
+  { src: "/img/ziloone-invoice.webp", label: "Invoicing" },
+  { src: "/img/ziloone-accounting.webp", label: "Accounting" },
+  { src: "/img/ziloone-crm-leads.webp", label: "CRM" },
+  { src: "/img/ziloone-hr-employees.webp", label: "HR" },
+  { src: "/img/ziloone-mail-calendar.webp", label: "Mail" },
+  { src: "/img/ziloone-chat.webp", label: "Chat" },
 ];
 
 const EASE = "cubic-bezier(0.22, 1, 0.36, 1)";
@@ -292,9 +330,14 @@ function ZiloShowcase() {
           <span className="ml-3 text-[11px] font-mono text-[#8a948f]">zilomail.in</span>
         </div>
         <img
-          src="/ziloone/00-dashboard.png"
-          alt="ZiloOne dashboard"
+          src="/img/ziloone-dashboard.webp"
+          srcSet="/img/ziloone-dashboard-800.webp 800w, /img/ziloone-dashboard.webp 1600w"
+          sizes="(min-width: 1024px) 560px, 90vw"
+          width={1600}
+          height={1000}
+          alt="ZiloOne dashboard: sales, purchases, receivables and cash for the month"
           loading="lazy"
+          decoding="async"
           className="block w-full aspect-[16/10] object-cover object-top"
         />
       </div>
@@ -306,8 +349,11 @@ function ZiloShowcase() {
             <img
               key={shot.src}
               src={shot.src}
-              alt={`ZiloOne ${shot.label}`}
+              alt={`ZiloOne ${shot.label} on a phone`}
+              width={480}
+              height={1039}
               loading="lazy"
+              decoding="async"
               className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-out ${
                 i === active ? "opacity-100 translate-x-0" : "opacity-0 translate-x-4"
               }`}
@@ -322,6 +368,7 @@ function ZiloShowcase() {
           <button
             key={shot.src}
             onClick={() => setActive(i)}
+            aria-pressed={i === active}
             className={`rounded-full px-3 py-1 transition-colors duration-300 ${
               i === active ? "bg-[#e5a93b] text-[#12332d]" : "text-white/50 hover:text-white"
             }`}
@@ -443,19 +490,26 @@ function IndexPage() {
         >
           {/* Giant rolling word (drifts sideways with the scroll) */}
           <div
-            aria-hidden
             className="pointer-events-none absolute inset-x-0 top-[9svh] h-[16svh] select-none lg:top-[11svh] lg:h-[28svh]"
             style={{ transform: "translateX(calc(var(--local, 0) * -12vw))" }}
           >
-            {scenes.map((s, i) => (
-              <div
-                key={s.id}
-                className="absolute inset-0 flex items-center justify-center whitespace-nowrap font-extrabold uppercase leading-none tracking-[-0.045em]"
-                style={{ fontSize: `min(27svh, ${128 / s.word.length}vw)` }}
-              >
-                <RollingWord text={s.word} state={i === scene ? "active" : i < scene ? "before" : "after"} />
-              </div>
-            ))}
+            {scenes.map((s, i) => {
+              // The name is the page's one h1; the role words are decoration.
+              const Word = i === 0 ? "h1" : "div";
+              return (
+                <Word
+                  key={s.id}
+                  aria-hidden={i === 0 ? undefined : true}
+                  aria-label={i === 0 ? "Arif Hussain" : undefined}
+                  className="absolute inset-0 m-0 flex items-center justify-center whitespace-nowrap font-extrabold uppercase leading-none tracking-[-0.045em]"
+                  style={{ fontSize: `min(27svh, ${128 / s.word.length}vw)` }}
+                >
+                  <span aria-hidden className="contents">
+                    <RollingWord text={s.word} state={i === scene ? "active" : i < scene ? "before" : "after"} />
+                  </span>
+                </Word>
+              );
+            })}
           </div>
 
           {/* Portrait — never moves; the ring fills as the roles go by */}
@@ -493,8 +547,14 @@ function IndexPage() {
               style={{ clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)" }}
             >
               <img
-                src="/Intense Side-Gaze Portrait Cutout.png"
-                alt="Arif Hussain"
+                src={PORTRAIT}
+                srcSet={`${PORTRAIT_SMALL} 720w, ${PORTRAIT} 1254w`}
+                sizes="(min-width: 1024px) min(67vh, 43vw), min(41vh, 81vw)"
+                width={1254}
+                height={1254}
+                alt="Portrait of Arif Hussain, software developer from Assam, India"
+                fetchPriority="high"
+                decoding="async"
                 className="absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none animate-fade-up"
                 style={{ animationDelay: "250ms", filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.22))" }}
               />
@@ -523,7 +583,7 @@ function IndexPage() {
                   <Line active={active} i={1} className="mt-2 flex items-center justify-center gap-3 lg:mt-3 lg:justify-start">
                     {s.logo && (
                       <span className="hidden h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-white p-1.5 shadow-md lg:flex">
-                        <img src={s.logo} alt="" className="h-full w-full object-contain" />
+                        <img src={s.logo} alt={`${s.title} logo`} width={44} height={44} loading="lazy" decoding="async" className="h-full w-full object-contain" />
                       </span>
                     )}
                     <h2 className="text-2xl font-extrabold leading-tight tracking-tight sm:text-3xl">{s.title}</h2>
@@ -636,6 +696,81 @@ function IndexPage() {
         </section>
       </div>
 
+      {/* -------------------------------- About ------------------------------- */}
+      <section id="about" className="mx-auto max-w-6xl scroll-mt-20 px-6 py-24 sm:px-10 sm:py-32">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70">About Arif Hussain</p>
+            <h2 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-5xl">
+              A developer who runs the businesses he writes software for<span className="text-[#e5a93b]">.</span>
+            </h2>
+          </Reveal>
+          <Reveal delay={120} className="lg:col-span-7">
+            <div className="space-y-5 text-[15px] leading-relaxed text-[#3c4743] sm:text-[17px]">
+              <p>
+                I'm <strong className="font-semibold text-[#1c2522]">Arif Hussain</strong>, a software developer and
+                founder from Assam, India. I've been writing software for eight years, and in 2023 I started{" "}
+                <a href="https://bigsur.in" target="_blank" rel="noopener" className="font-semibold text-[#1f4b44] underline decoration-[#e5a93b] decoration-2 underline-offset-4">
+                  BigSur Corp
+                </a>{" "}
+                in Guwahati to turn that work into products: a self-hosted business suite, a multi-tenant ERP, offline
+                billing and accounting, and a data platform.
+              </p>
+              <p>
+                I like owning the whole stack: product, architecture, code, security and the Linux servers it runs on.
+                Most of it is TypeScript, React and Node.js on PostgreSQL, with Rust where speed matters.
+              </p>
+              <p>
+                I also know the other side of the screen. My family has run a distribution agency in Mankachar since
+                1999, and I founded a K-12 school and a charitable trust there. So when I build billing, distribution or
+                school software, I'm building for work I do myself.
+              </p>
+            </div>
+            <dl className="mt-10 grid grid-cols-2 gap-x-8 sm:grid-cols-4">
+              {facts.map((f) => (
+                <div key={f.term} className="border-t border-[#d9d2c2] py-4">
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#66706c]">{f.term}</dt>
+                  <dd className="mt-1.5 text-[15px] font-bold text-[#1f4b44]">{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* -------------------------------- Work -------------------------------- */}
+      <section id="work" className="scroll-mt-20 border-y border-[#e6e0d2] bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-24 sm:px-10 sm:py-32">
+          <Reveal>
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70">Selected work</p>
+            <h2 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-6xl">
+              Software I've built<span className="text-[#e5a93b]">.</span>
+            </h2>
+          </Reveal>
+          <ul className="mt-12 grid gap-x-12 sm:grid-cols-2 lg:gap-x-16">
+            {projects.map((p, i) => (
+              <li key={p.name}>
+                <Reveal delay={(i % 2) * 100}>
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="group block border-t border-[#e6e0d2] py-7 transition-[padding] duration-300 hover:pl-2"
+                  >
+                    <div className="flex items-center justify-between gap-4">
+                      <h3 className="text-xl font-extrabold tracking-tight text-[#1f4b44] sm:text-2xl">{p.name}</h3>
+                      <ArrowUpRight className="h-5 w-5 shrink-0 text-[#1f4b44]/40 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#1f4b44]" />
+                    </div>
+                    <p className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-[#8a5f0e]">{p.kind}</p>
+                    <p className="mt-3 max-w-md text-sm leading-relaxed text-[#4a5551]">{p.desc}</p>
+                  </a>
+                </Reveal>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       {/* ------------------------- Now building: ZiloOne ---------------------- */}
       <section className="bg-[#12332d] text-[#f6f3ea]">
         <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-24 sm:px-10 sm:py-32 lg:grid-cols-12">
@@ -668,8 +803,50 @@ function IndexPage() {
         </div>
       </section>
 
+      {/* -------------------------------- Stack ------------------------------- */}
+      <section id="stack" className="mx-auto max-w-6xl scroll-mt-20 px-6 pt-24 sm:px-10 sm:pt-32">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70">Stack</p>
+          <h2 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-6xl">
+            What I build with<span className="text-[#e5a93b]">.</span>
+          </h2>
+        </Reveal>
+        <div className="mt-12 grid grid-cols-2 gap-x-8 lg:grid-cols-3 lg:gap-x-16">
+          {stack.map((s, i) => (
+            <Reveal key={s.group} delay={(i % 3) * 80} className="border-t border-[#d9d2c2] py-6">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.16em] text-[#66706c]">{s.group}</h3>
+              <ul className="mt-3 space-y-1.5 text-[15px] font-semibold text-[#1f4b44]">
+                {s.items.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ------------------------------ Questions ----------------------------- */}
+      <section id="faq" className="mx-auto max-w-6xl scroll-mt-20 px-6 pt-24 sm:px-10 sm:pt-32">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-12">
+          <Reveal className="lg:col-span-4">
+            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/70">Questions</p>
+            <h2 className="mt-5 text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] text-[#1f4b44] sm:text-5xl">
+              The short answers<span className="text-[#e5a93b]">.</span>
+            </h2>
+          </Reveal>
+          <div className="lg:col-span-8">
+            {faqs.map((f, i) => (
+              <Reveal key={f.q} delay={i * 60} className="border-t border-[#d9d2c2] py-6">
+                <h3 className="text-lg font-bold tracking-tight text-[#1f4b44]">{f.q}</h3>
+                <p className="mt-2 max-w-2xl text-[15px] leading-relaxed text-[#3c4743]">{f.a}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ------------------------------- Contact ------------------------------ */}
-      <section id="contact" className="mx-auto max-w-6xl px-6 py-24 text-center sm:px-10 sm:py-36">
+      <section id="contact" className="mx-auto max-w-6xl scroll-mt-10 px-6 py-24 text-center sm:px-10 sm:py-36">
         <Reveal>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#1f4b44]/60">Which Arif do you need?</p>
           <h2 className="mt-6 text-[clamp(2.25rem,7vw,5.5rem)] font-extrabold leading-[1] tracking-[-0.04em] text-[#1f4b44]">
@@ -736,7 +913,7 @@ function IndexPage() {
           </a>
           <span className="flex items-center gap-1.5">
             <MapPin className="h-3.5 w-3.5 text-[#e5a93b]" />
-            Guwahati &amp; Mankachar, Assam
+            {LOCATION}
           </span>
         </Reveal>
       </section>
@@ -750,13 +927,20 @@ function IndexPage() {
             </span>{" "}
             · Developer, distributor, educator, trustee
           </span>
+          <nav aria-label="On this page" className="flex flex-wrap justify-center gap-x-5 gap-y-1 font-medium">
+            {sections.map((s) => (
+              <a key={s.href} href={s.href} className="transition-colors hover:text-[#1f4b44]">
+                {s.label}
+              </a>
+            ))}
+          </nav>
           <div className="flex items-center gap-1">
             {socials.map(({ label, href, icon: Icon }) => (
               <a
                 key={label}
                 href={href}
                 target={href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
+                rel={href === GITHUB ? "me noopener" : "noopener noreferrer"}
                 aria-label={label}
                 className="rounded-full p-2 text-[#1f4b44]/60 transition-all hover:-translate-y-0.5 hover:bg-white hover:text-[#1f4b44]"
               >

@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { SITE_NAME } from "../lib/site";
 
 function NotFoundComponent() {
   return (
@@ -72,38 +73,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
-      { title: "Arif Hussain" },
-      { name: "description", content: "Entrepreneur, Founder, and Leader" },
+      { title: SITE_NAME },
       { name: "author", content: "Arif Hussain" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "theme-color", content: "#f8f6f0" },
+      { name: "apple-mobile-web-app-title", content: SITE_NAME },
       { name: "apple-mobile-web-app-status-bar-style", content: "default" },
-      { property: "og:title", content: "Arif Hussain — Creative Entrepreneur" },
-      { property: "og:description", content: "I design beautifully simple things, and I love what I do." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:site_name", content: SITE_NAME },
+      { property: "og:locale", content: "en_IN" },
     ],
     links: [
+      {
+        rel: "preload",
+        href: "/fonts/plus-jakarta-sans.woff2",
+        as: "font",
+        type: "font/woff2",
+        crossOrigin: "anonymous",
+      },
       {
         rel: "stylesheet",
         href: appCss,
       },
       {
-        rel: "preconnect",
-        href: "https://fonts.googleapis.com",
-      },
-      {
-        rel: "preconnect",
-        href: "https://fonts.gstatic.com",
-        crossOrigin: "anonymous",
-      },
-      {
-        rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Caveat:wght@600;700&display=swap",
-      },
-      {
         rel: "icon",
         type: "image/png",
-        href: "/favicon.png",
+        sizes: "96x96",
+        href: "/favicon-96x96.png",
       },
       {
         rel: "icon",
@@ -118,9 +113,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: "/favicon-16x16.png",
       },
       {
+        rel: "icon",
+        type: "image/png",
+        sizes: "192x192",
+        href: "/android-chrome-192x192.png",
+      },
+      {
         rel: "apple-touch-icon",
         sizes: "180x180",
         href: "/apple-touch-icon.png",
+      },
+      {
+        rel: "manifest",
+        href: "/site.webmanifest",
       },
     ],
     scripts: [
@@ -142,6 +147,10 @@ function RootShell({ children }: { children: React.ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Sections fade in on scroll; without scripts they must simply be there. */}
+        <noscript>
+          <style>{".reveal{opacity:1!important;transform:none!important}"}</style>
+        </noscript>
       </head>
       <body>
         {children}
