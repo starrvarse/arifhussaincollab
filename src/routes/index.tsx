@@ -548,7 +548,7 @@ function IndexPage() {
             >
               <img
                 src={PORTRAIT}
-                srcSet={`${PORTRAIT_SMALL} 720w, ${PORTRAIT} 1254w`}
+                srcSet={`/img/arif-hussain-600.webp 600w, ${PORTRAIT_SMALL} 720w, /img/arif-hussain-960.webp 960w, ${PORTRAIT} 1254w`}
                 sizes="(min-width: 1024px) min(67vh, 43vw), min(41vh, 81vw)"
                 width={1254}
                 height={1254}
@@ -684,8 +684,10 @@ function IndexPage() {
                   key={r.id}
                   onClick={() => goTo(i + 1)}
                   className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 ${
-                    active ? "bg-[var(--fg)] text-[var(--bg)]" : "opacity-50 hover:opacity-100"
+                    active ? "bg-[var(--fg)] text-[var(--bg)]" : "opacity-80 hover:opacity-100"
                   }`}
+                  aria-label={`0${i + 1} ${r.label}`}
+                  aria-current={active ? "true" : undefined}
                 >
                   <span className="font-mono">0{i + 1}</span>
                   <span className={active ? "" : "hidden sm:inline"}>{r.label}</span>

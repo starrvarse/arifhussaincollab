@@ -83,6 +83,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:locale", content: "en_IN" },
     ],
     links: [
+      // The visitor counter's script and its cookie notice come from here.
+      { rel: "preconnect", href: "https://p.zilomail.in" },
       {
         rel: "preload",
         href: "/fonts/plus-jakarta-sans.woff2",

@@ -1,5 +1,5 @@
 import { r as reactExports, j as jsxRuntimeExports } from "../_libs/react.mjs";
-import { c as PORTRAIT_SMALL, b as PORTRAIT, p as projects, s as stack, f as faqs, E as EMAIL, P as PHONE, a as PHONE_HREF, L as LOCATION, G as GITHUB, F as FACEBOOK, I as INSTAGRAM } from "./router-CplfeN09.mjs";
+import { c as PORTRAIT_SMALL, b as PORTRAIT, p as projects, s as stack, f as faqs, E as EMAIL, P as PHONE, a as PHONE_HREF, L as LOCATION, G as GITHUB, F as FACEBOOK, I as INSTAGRAM } from "./router-CY6-t51U.mjs";
 import { H as Hand, c as CodeXml, T as Truck, e as GraduationCap, f as HeartHandshake, a as ArrowRight, b as ArrowUpRight, A as ArrowDown, M as Mail, C as Check, d as Copy, P as Phone, g as MapPin, G as Github, F as Facebook, I as Instagram } from "../_libs/lucide-react.mjs";
 import "../_libs/tanstack__query-core.mjs";
 import "../_libs/tanstack__react-query.mjs";
@@ -397,7 +397,7 @@ function IndexPage() {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "absolute inset-x-0 bottom-0 h-[124%] overflow-hidden", style: {
           clipPath: "inset(0 0 0 0 round 0 0 9999px 9999px)"
-        }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: PORTRAIT, srcSet: `${PORTRAIT_SMALL} 720w, ${PORTRAIT} 1254w`, sizes: "(min-width: 1024px) min(67vh, 43vw), min(41vh, 81vw)", width: 1254, height: 1254, alt: "Portrait of Arif Hussain, software developer from Assam, India", fetchPriority: "high", decoding: "async", className: "absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none animate-fade-up", style: {
+        }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: PORTRAIT, srcSet: `/img/arif-hussain-600.webp 600w, ${PORTRAIT_SMALL} 720w, /img/arif-hussain-960.webp 960w, ${PORTRAIT} 1254w`, sizes: "(min-width: 1024px) min(67vh, 43vw), min(41vh, 81vw)", width: 1254, height: 1254, alt: "Portrait of Arif Hussain, software developer from Assam, India", fetchPriority: "high", decoding: "async", className: "absolute bottom-0 left-1/2 h-[96%] w-auto max-w-none -translate-x-1/2 select-none animate-fade-up", style: {
           animationDelay: "250ms",
           filter: "drop-shadow(0 18px 30px rgba(0,0,0,0.22))"
         } }) }),
@@ -442,7 +442,7 @@ function IndexPage() {
       }),
       /* @__PURE__ */ jsxRuntimeExports.jsx("nav", { className: "absolute inset-x-0 bottom-0 flex h-[8svh] min-h-12 items-center justify-center gap-1 sm:gap-2", "aria-label": "Roles", children: roles.map((r, i) => {
         const active = scene === i + 1;
-        return /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { onClick: () => goTo(i + 1), className: `flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 ${active ? "bg-[var(--fg)] text-[var(--bg)]" : "opacity-50 hover:opacity-100"}`, children: [
+        return /* @__PURE__ */ jsxRuntimeExports.jsxs("button", { onClick: () => goTo(i + 1), className: `flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold transition-all duration-500 ${active ? "bg-[var(--fg)] text-[var(--bg)]" : "opacity-80 hover:opacity-100"}`, "aria-label": `0${i + 1} ${r.label}`, "aria-current": active ? "true" : void 0, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "font-mono", children: [
             "0",
             i + 1

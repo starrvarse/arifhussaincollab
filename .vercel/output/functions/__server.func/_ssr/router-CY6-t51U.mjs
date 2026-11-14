@@ -333,6 +333,8 @@ const Route$1 = createRootRouteWithContext()({
       { property: "og:locale", content: "en_IN" }
     ],
     links: [
+      // The visitor counter's script and its cookie notice come from here.
+      { rel: "preconnect", href: "https://p.zilomail.in" },
       {
         rel: "preload",
         href: "/fonts/plus-jakarta-sans.woff2",
@@ -407,7 +409,7 @@ function RootComponent() {
   const { queryClient } = Route$1.useRouteContext();
   return /* @__PURE__ */ jsxRuntimeExports.jsx(QueryClientProvider, { client: queryClient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) });
 }
-const $$splitComponentImporter = () => import("./index-qYflzQBr.mjs");
+const $$splitComponentImporter = () => import("./index-002leS6t.mjs");
 const SHARE_ALT = "Arif Hussain, software developer and founder of BigSur Corp";
 const Route = createFileRoute("/")({
   head: () => ({
